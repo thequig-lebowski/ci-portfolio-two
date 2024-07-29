@@ -7,6 +7,11 @@
   src: url("../fonts/SafirScript.ttf") format("truetype");
 }
 
+/* Declare variables to be targated by js */
+:root {
+  --num-of-rows: 4;
+}
+
 /* Global CSS Resets */
 *,
 *::before,
@@ -26,7 +31,9 @@ a:hover {
 
 /* Generic Styles */
 body {
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  /* height: 100%; */
+  /* overflow-x: hidden; */
   display: flex;
   flex-direction: column;
 }
@@ -65,11 +72,39 @@ h1 {
 }
 
 .game-controls {
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.game-controls button {
+  margin: 5px 15px;
+}
 
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--num-of-rows), 1fr);
+  grid-template-rows: repeat(var(--num-of-rows), 1fr);
+  gap: 10px;
+  /* max-height: 100vh; */
+  overflow: hidden;
 
+}
+
+.card-back {
+  max-height: 100px;
+  max-width: 100px;
+  /* background-image: url(../images/cardfront.png); */
+  border: solid red 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-back img {
+  height: 85%;
+  width: 85%;
+}
 
 
 
