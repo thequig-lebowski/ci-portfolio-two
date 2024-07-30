@@ -47,7 +47,7 @@ function buildGrid(numOfRows) {
         for (let j = 0; j < 2; j++) {
             grid = `${grid}
                         <div class="card-back">
-                            <img class="back-image" src="assets/images/cardback.png" alt="back of playing card"/>
+                            <img class="back-image" src="assets/images/sock_${i + 1}.png" alt="back of playing card"/>
                         </div>
                     `;
         }
