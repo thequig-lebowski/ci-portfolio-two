@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /**
- * Test funciont to build out a grid of cards,
- * size of which is depending on a user input
+ * Build either a large or small grid of cards depending on the game level
+ * This function takes an argument; 4 for 'easy', 6 for 'difficult'
  */
 function buildGrid(numOfRows) {
     console.log("building grid...", numOfRows);
@@ -66,9 +66,8 @@ function buildGrid(numOfRows) {
 
 
 /**
- * We read the current
- * game level from the css variable and use it to generate a new
- * instance of the game at the same level.
+ * We read the current game level from the css variable
+ * and use it to generate a new instance of the game at the same level.
  */
 function resetGame() {
 
@@ -78,9 +77,9 @@ function resetGame() {
 }
 
 /**
- * Shuffle function.
+ * Shuffle function. Creates an array of divs with class card-container
+ * and assigns the 'order' style property with a random value to each div.
  */
-
 function shuffleCards() {
 
     // creat an array of the cards to be shuffled
