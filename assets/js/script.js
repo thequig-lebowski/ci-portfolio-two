@@ -34,7 +34,7 @@ function buildGrid(numOfRows) {
     console.log("building grid...", numOfRows);
 
     // clear the board of any old game instances 
-    $(".card-back").remove();
+    $(".card-container").remove();
 
     //Declare an empty array to store the generated html 
     let grid = [];
@@ -46,8 +46,10 @@ function buildGrid(numOfRows) {
     for (let i = 0; i < numOfCards; i++) {
         for (let j = 0; j < 2; j++) {
             grid = `${grid}
-                        <div class="card-back">
-                            <img class="back-image" src="assets/images/sock_${i + 1}.png" alt="back of playing card"/>
+                        <div class="card-container">
+                            <div class="card-front">
+                                <img class="front-image" src="assets/images/sock_${i + 1}.png" alt="sock playing card"/>
+                            </div>
                         </div>
                     `;
         }
@@ -58,6 +60,8 @@ function buildGrid(numOfRows) {
     $(":root").get(0).style.setProperty("--num-of-rows", numOfRows);
 
     $(".game-grid").append(grid);
+
+    shuffleCards();
 }
 
 
@@ -71,4 +75,23 @@ function resetGame() {
     let currentLevel = $(":root").css("--num-of-rows");
     console.log("game reset", currentLevel);
     buildGrid(currentLevel);
+}
+
+/**
+ * Shuffle function.
+ */
+
+function shuffleCards() {
+
+    // creat an array of the cards to be shuffled
+    let cardDeck = $('.card-container');
+    console.log(cardDeck.length);
+
+    // Durstenfeld variation of the Fisher-Yates shuffle
+    // 
+    for ( let i = cardDeck.length - 1; i > 0; i--) {
+         let randomIndex = Math.floor(Math.random() * (i + 1));
+         cardDeck[randomIndex].style.order = i;
+         cardDeck[i].style.order = randomIndex;    
+    }
 }

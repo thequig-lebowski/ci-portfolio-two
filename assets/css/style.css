@@ -97,7 +97,9 @@ h1 {
 
 }
 
-.card-back {
+/* Card styles */
+
+.card-container {
   /* max-height: 100px; */
   /* max-width: 100px; */
   border: solid red 1px;
@@ -109,7 +111,8 @@ h1 {
   /* transform: scale(0.7); */
 }
 
-.card-back img {
+.front-image,
+.back-image {
   display: block;
   max-height:95px;
   width: auto;
