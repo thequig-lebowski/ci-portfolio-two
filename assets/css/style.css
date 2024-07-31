@@ -112,14 +112,22 @@ h1 {
   /* max-height: 100px; */
   /* max-width: 100px; */
   position: relative;
-  border: solid red 1px;
-  background-color: aliceblue;
+  /* border: solid red 1px; */
+  /* background-color: aliceblue; */
   justify-self: center;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   /* transform: scale(0.7); */
+}
+
+.card-container.flipped .card-back {
+  transform: rotateY(-180deg);
+}
+
+.card-container.flipped .card-front {
+  transform: rotateY(0deg);
 }
 
 .card {
@@ -132,6 +140,7 @@ h1 {
   align-items: center;
   overflow: hidden;
   backface-visibility: hidden;
+  transition: transform 450ms ease-in-out; 
 }
 
 .card-front {
@@ -145,8 +154,8 @@ h1 {
 
 .front-image,
 .back-image {
-  display: block;
-  max-height:95px;
+  /* display: block; */
+  max-height: 95px;
   width: auto;
   height: auto;
 }

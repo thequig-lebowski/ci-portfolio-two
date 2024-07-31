@@ -39,6 +39,9 @@ function buildGrid(numOfRows, time) {
     // Set time on countdown
     $("#time-remain").text(time);
 
+    // Set moves counter to '0'
+    $("#total-moves").text('0');
+
     //Declare an empty array to store the generated html 
     let grid = [];
 
@@ -139,7 +142,7 @@ function countdownTimer(time, allowCountdown) {
 function addMyListeners(cardDeck) {
     cardDeck.forEach(card => {
         card.addEventListener("click", () => {
-            flippCard(card);
+            flipCard(card);
         });
     });
 }
@@ -147,8 +150,21 @@ function addMyListeners(cardDeck) {
 /**
  * flipp card
  */
-function flippCard(card) {
+function flipCard(card) {
     console.log("hi from the flip", card);
+    card.classList.add("flipped");
+
+    incrementFlipcounter();
+}
+
+/**
+ * Update the number of flips the user has made
+ * write it to the DOM
+ */
+function incrementFlipcounter() {
+    let flips = $("#total-moves").text();
+    flips++;
+    $("#total-moves").text(flips);
 }
 
 
