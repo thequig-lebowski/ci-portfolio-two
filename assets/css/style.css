@@ -81,6 +81,15 @@ h1 {
   margin: 5px 15px;
 }
 
+.game-info {
+  outline: 2px solid orange;
+  outline-offset: -2px;
+
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1 / -1;
+}
+
 .game-grid {
   display: grid;
   grid-template-columns: repeat(var(--num-of-rows), auto);
@@ -102,13 +111,36 @@ h1 {
 .card-container {
   /* max-height: 100px; */
   /* max-width: 100px; */
+  position: relative;
   border: solid red 1px;
+  background-color: aliceblue;
   justify-self: center;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   /* transform: scale(0.7); */
+}
+
+.card {
+  /* position: absolute; */
+  border-radius: 11px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  /* position: absolute; */
+  transform: rotateY(180deg);
+}
+
+.card-back {
+  position: absolute;
 }
 
 .front-image,
@@ -119,7 +151,13 @@ h1 {
   height: auto;
 }
 
+.hidden {
+  display: none;
+}
 
+.selected {
+  border: solid red 5px;
+}
 
 /*   ---Media Queries--- */
 /* xs */

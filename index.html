@@ -21,24 +21,28 @@
     <main>
         <!-- Game Controls -->
         <section class="query-container game-controls">
-            <!-- <div class="buttons"> -->
-            <button id="easy" data-type="easy">Easy</button>
-            <button id="difficult" data-type="difficult">Difficult</button>
-            <button id="reset" data-type="reset">Reset</button>
+            <h2 class="hidden">Game Controls</h2>
+            <!-- <div class="game-controls"> -->
+            <button data-type="easy">Easy</button>
+            <button data-type="difficult">Difficult</button>
+            <button data-type="reset">Reset</button>
             <!-- </div> -->
         </section>
         <!-- Game Play Area -->
-        <div class="game-info query-container">
-            <div class="timer">
-                <span>Time Remaining: </span><span id="time-remain">0</span>
+        <section class="game-grid query-container">
+            <h2 class="hidden">Score Board</h2>
+            <div class="game-info">
+                <div class="timer">
+                    <span>Time Remaining: </span><span id="time-remain">0</span>
+                </div>
+                <div class="counter">
+                    <span>Moves: </span><span id="total-moves">0</span>
+                </div>
             </div>
-            <div class="counter">
-                <span>Moves: </span><span id="total-moves">0</span>
-            </div>
-        </div>
-        <!-- Game grid goes here -->
-        <div class="game-grid query-container">
-        </div>
+        </section>
+        <!-- Game grid goes in this parent div -->
+        <!-- <div class="game-grid query-container">
+        </div> -->
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
