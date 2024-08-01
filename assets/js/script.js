@@ -71,7 +71,7 @@ function buildGrid(numOfRows, time) {
     $(".game-grid").append(grid);
 
     let cardDeck = $('.card-container').toArray();
-    shuffleCards(cardDeck);
+    // shuffleCards(cardDeck);
     addMyListeners(cardDeck);
     // countdownTimer(time, true);
 }
@@ -142,7 +142,7 @@ function countdownTimer(time, allowCountdown) {
 function addMyListeners(cardDeck) {
     cardDeck.forEach(card => {
         card.addEventListener("click", () => {
-            flipCard(card);
+            flipCard(card, cardDeck);
         });
     });
 }
@@ -153,7 +153,7 @@ let secondCard;
  * flip card by adding class 'flipped' to parent div
  * then check to see if two flipped cards match
  */
-function flipCard(card) {
+function flipCard(card, cardDeck) {
 
     //Check to see if the card is already flipped
     if (!card.classList.contains("flipped")) {
@@ -166,7 +166,7 @@ function flipCard(card) {
         } else {
             secondCard = card;
             console.log("second card ", secondCard);
-            checkMatchedPairs(firstCard, secondCard);
+            checkMatchedPairs(firstCard, secondCard, cardDeck);
         }
     }
 }
@@ -186,7 +186,7 @@ function incrementFlipcounter() {
 /**
  * Check pairs
  */
-function checkMatchedPairs(firstCard, secondCard) {
+function checkMatchedPairs(firstCard, secondCard, cardDeck) {
     console.log("test print ", firstCard, secondCard);
 
     //grab the card "value" to be checked against other flipped cards
@@ -196,7 +196,7 @@ function checkMatchedPairs(firstCard, secondCard) {
 
     if (cardValueOne === cardValueTwo) {
         console.log("match!");
-        // checkForGameWin();
+        checkForGameWin(cardDeck);
     } else {
         setTimeout(() => {
             firstCard.classList.remove("flipped");
@@ -209,19 +209,22 @@ function checkMatchedPairs(firstCard, secondCard) {
  * Check for total number of pairs - 2 by counting "flipped"
  * classes. Auto match the last pair, pause time etc
  */
-function checkForGameWin() {
+function checkForGameWin(cardDeck) {
     console.log("check game win");
     let totalPairs = $('.card-container').toArray().length;
     let matchedPairs = $('.flipped').toArray().length;
+    console.log("matched pairs ", matchedPairs);
+    console.log("total pair ", totalPairs);
 
-    if (matchedPairs <= totalPairs - 2) {
+    if (matchedPairs <= totalPairs - 3) {
         return;
     } else {
+        console.log("flip last pair")
+        let unflipped = $('.card-container:not(.flipped)');
+        console.log(unflipped);
         setTimeout(() => {
-            let unflipped = $('.card-container:not(.flipped)')
-            unflipped[0].classList.add('flipped');
-            unflipped[1].classList.add('flipped');
-
+        unflipped[0].classList.add('flipped');
+        unflipped[1].classList.add('flipped');
         }, 300);
     }
 
