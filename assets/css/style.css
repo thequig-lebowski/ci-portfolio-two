@@ -168,6 +168,20 @@ h1 {
   border: solid red 5px;
 }
 
+/*    ---Modals---    */
+.welcome-modal {
+  max-width: 50ch;
+}
+
+.modal {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+}
+
 /*   ---Media Queries--- */
 /* xs */
 @media (min-width: 475px) {

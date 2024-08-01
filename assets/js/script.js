@@ -5,12 +5,13 @@ let firstCard;
 let secondCard;
 let countdown;
 
+
 /**
  * Wait for DOM to finish loading
  */
 document.addEventListener("DOMContentLoaded", function () {
     console.log("DOM loaded");
-
+    displayModal(".welcome-modal");
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
@@ -23,9 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("difficult game set")
             } else if (this.getAttribute("data-type") === "reset") {
                 resetGame();
-            } else {
-                alert(`data-type ${this.getAttribute("data-type")} not recognised.`);
-            }
+            } 
+            // else {
+                // alert(`data-type ${this.getAttribute("data-type")} not recognised.`);
+            // }
         })
 
     }
@@ -33,6 +35,22 @@ document.addEventListener("DOMContentLoaded", function () {
     buildGrid(4, 60);
 })
 
+/**
+ * Modal toggle on and off
+ */
+function displayModal(myModal) {
+
+    let modal = document.querySelector(`${myModal}`);
+    let closeModal = document.querySelector(`${myModal} > .close-button`);
+    console.log("this is this ", this);
+
+    modal.showModal();
+
+    closeModal.addEventListener("click", () => {
+        modal.close();
+        resetGame();
+    });
+}
 
 /**
  * Build either a large or small grid of cards depending on the game level
@@ -143,6 +161,7 @@ function countdownTimer() {
         if (time === 0) {
             console.log("timed out");
             clearInterval(countdown);
+            displayModal(".game-over-modal");
             //Game over
         }
     }, 1000);
@@ -250,6 +269,7 @@ function checkForGameWin() {
             }, 150);
 
         }, 300);
+        displayModal(".winner-modal");
     }
 
 }
