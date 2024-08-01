@@ -82,7 +82,7 @@ function buildGrid(numOfRows, time) {
     let cardDeck = $('.card-container').toArray();
     // shuffleCards(cardDeck);
     addMyListeners(cardDeck);
-    countdownTimer(time);
+    // countdownTimer();
 }
 
 
@@ -133,8 +133,10 @@ function shuffleCards(cardDeck) {
  * to the HTML. Pass 'false' as the second param
  * to stop the timer
  */
-function countdownTimer(time) {
+function countdownTimer() {
+    let time = $("#time-remain").text();
     console.log(time);
+
     countdown = setInterval(() => {
         time--;
         $("#time-remain").text(time);
@@ -156,6 +158,9 @@ function addMyListeners(cardDeck) {
     cardDeck.forEach(card => {
         card.addEventListener("click", () => {
             flipCard(card);
+            if ($('.card-container.flipped').length === 1) {
+                countdownTimer();
+            }
         });
     });
 }
@@ -247,11 +252,4 @@ function checkForGameWin() {
         }, 300);
     }
 
-}
-
-/**
- * Freeze the countdown timer
- */
-function freezeTimer() {
-    countdownTimer(null, false)
 }
