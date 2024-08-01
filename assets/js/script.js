@@ -99,9 +99,27 @@ function buildGrid(numOfRows, time) {
     $(".game-grid").append(grid);
 
     let cardDeck = $('.card-container').toArray();
-    // shuffleCards(cardDeck);
+    shuffleCards(cardDeck);
     addMyListeners(cardDeck);
     // countdownTimer();
+}
+
+/**
+ * Shuffle function. Creates an array of divs with class card-container
+ * and assigns the 'order' style property with a random value to each div.
+ */
+function shuffleCards(cardDeck) {
+
+    // creat an array of the cards to be shuffled
+
+    console.log("cardDeck is a ", typeof cardDeck);
+
+    // Durstenfeld variation of the Fisher-Yates shuffle
+    for (let i = cardDeck.length - 1; i > 0; i--) {
+        let randomIndex = Math.floor(Math.random() * (i + 1));
+        cardDeck[randomIndex].style.order = i;
+        cardDeck[i].style.order = randomIndex;
+    }
 }
 
 
@@ -127,26 +145,6 @@ function resetGame() {
 }
 
 /**
- * Shuffle function. Creates an array of divs with class card-container
- * and assigns the 'order' style property with a random value to each div.
- */
-function shuffleCards(cardDeck) {
-
-    // creat an array of the cards to be shuffled
-
-    console.log("cardDeck is a ", typeof cardDeck);
-    // console.log(cardDeck[3]);
-
-    // Durstenfeld variation of the Fisher-Yates shuffle
-    for (let i = cardDeck.length - 1; i > 0; i--) {
-        let randomIndex = Math.floor(Math.random() * (i + 1));
-        cardDeck[randomIndex].style.order = i;
-        cardDeck[i].style.order = randomIndex;
-    }
-}
-
-
-/**
  * Set the timer time based on game level
  * and then countdown to 0 while updating it 
  * to the HTML. Pass 'false' as the second param
@@ -165,6 +163,7 @@ function countdownTimer() {
             displayModal(".game-over-modal");
         }
     }, 1000);
+    console.log("countdown is a ", typeof countdown);
 
 }
 
@@ -240,13 +239,6 @@ function checkMatchedPairs(firstCard, secondCard) {
         checkForGameWin();
         gameBusy = false;
     } else {
-        // let removeOne = document.querySelector(`[data-cardnumber="${cardValueOne}"]`);
-        // let removeTwo = document.querySelector(`[data-cardnumber="${cardValueTwo}"]`);
-        // console.log("removeOne", removeOne);
-        // console.log("removeTwo", removeTwo);
-        // removeOne.classList.remove('flipped');
-        // removeTwo.classList.remove('flipped');
-
         // un-flip wrong gueses
         setTimeout(() => {
             firstCard.classList.remove("flipped");
@@ -259,6 +251,7 @@ function checkMatchedPairs(firstCard, secondCard) {
         gameBusy = false;
     }, 850);
 }
+
 
 /**
  * Check for total number of pairs - 2 by counting "flipped"
@@ -275,13 +268,11 @@ function checkForGameWin() {
         let unflipped = $('.card-container:not(.flipped)');
         setTimeout(() => {
             clearInterval(countdown);
-
             console.log("flip last pair");
             unflipped[0].classList.add('flipped');
             setTimeout(() => {
                 unflipped[1].classList.add('flipped');
             }, 150);
-
         }, 300);
         displayModal(".winner-modal");
     }
