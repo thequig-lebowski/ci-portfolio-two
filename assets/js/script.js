@@ -1,5 +1,12 @@
-// Wait for DOM to finish loading
+/**
+ * Globals
+ */
+let firstCard;
+let secondCard;
 
+/**
+ * Wait for DOM to finish loading
+ */
 document.addEventListener("DOMContentLoaded", function () {
     console.log("DOM loaded");
 
@@ -142,31 +149,35 @@ function countdownTimer(time, allowCountdown) {
 function addMyListeners(cardDeck) {
     cardDeck.forEach(card => {
         card.addEventListener("click", () => {
-            flipCard(card, cardDeck);
+            flipCard(card);
         });
     });
 }
 
-let firstCard;
-let secondCard;
+
 /**
  * flip card by adding class 'flipped' to parent div
  * then check to see if two flipped cards match
  */
-function flipCard(card, cardDeck) {
-
+function flipCard(card) {
     //Check to see if the card is already flipped
     if (!card.classList.contains("flipped")) {
         card.classList.add("flipped");
-        let remainder = incrementFlipcounter();
 
-        if (remainder === 1) {
+        // get number of divs with 'flipped' class % 2 
+        // to decide if this is first flip or second
+        let flipFlop = $('.card-container.flipped').length;
+        console.log("Number of cards currently flipped ", flipFlop);
+
+        if (flipFlop % 2) {
             firstCard = card;
             console.log("first card ", firstCard);
         } else {
             secondCard = card;
+            incrementFlipCounter();
             console.log("second card ", secondCard);
-            checkMatchedPairs(firstCard, secondCard, cardDeck);
+
+            checkMatchedPairs(firstCard, secondCard);
         }
     }
 }
@@ -175,19 +186,17 @@ function flipCard(card, cardDeck) {
  * Update the number of flips the user has made
  * write it to the DOM
  */
-function incrementFlipcounter() {
+function incrementFlipCounter() {
     let flips = $("#total-moves").text();
     flips++;
     $("#total-moves").text(flips);
-
-    return flips % 2;
+    return;
 }
 
 /**
  * Check pairs
  */
-function checkMatchedPairs(firstCard, secondCard, cardDeck) {
-    console.log("test print ", firstCard, secondCard);
+function checkMatchedPairs(firstCard, secondCard) {
 
     //grab the card "value" to be checked against other flipped cards
     let cardValueOne = firstCard.getAttribute('data-cardNumber');
@@ -196,7 +205,7 @@ function checkMatchedPairs(firstCard, secondCard, cardDeck) {
 
     if (cardValueOne === cardValueTwo) {
         console.log("match!");
-        checkForGameWin(cardDeck);
+        checkForGameWin();
     } else {
         setTimeout(() => {
             firstCard.classList.remove("flipped");
@@ -209,22 +218,24 @@ function checkMatchedPairs(firstCard, secondCard, cardDeck) {
  * Check for total number of pairs - 2 by counting "flipped"
  * classes. Auto match the last pair, pause time etc
  */
-function checkForGameWin(cardDeck) {
-    console.log("check game win");
+function checkForGameWin() {
     let totalPairs = $('.card-container').toArray().length;
     let matchedPairs = $('.flipped').toArray().length;
-    console.log("matched pairs ", matchedPairs);
-    console.log("total pair ", totalPairs);
 
-    if (matchedPairs <= totalPairs - 3) {
+    if (matchedPairs < totalPairs - 2) {
         return;
     } else {
-        console.log("flip last pair")
+        // Flip remaining pair of cards
         let unflipped = $('.card-container:not(.flipped)');
-        console.log(unflipped);
         setTimeout(() => {
-        unflipped[0].classList.add('flipped');
-        unflipped[1].classList.add('flipped');
+
+            console.log("flip last pair");
+            unflipped[0].classList.add('flipped');
+
+            setTimeout(() => {
+                unflipped[1].classList.add('flipped');
+            }, 150);
+
         }, 300);
     }
 
