@@ -52,7 +52,7 @@ function buildGrid(numOfRows, time) {
     for (let i = 0; i < numOfCards; i++) {
         for (let j = 0; j < 2; j++) {
             grid = `${grid}
-                        <div class="card-container" data-card-number="${i + 1}">
+                        <div class="card-container" data-cardNumber="${i + 1}">
                             <div class="card card-back">
                                 <img class="back-image" src="assets/images/cardback.png" alt="back of card"/>
                             </div>
@@ -147,14 +147,28 @@ function addMyListeners(cardDeck) {
     });
 }
 
+let firstCard;
+let secondCard;
 /**
- * flipp card
+ * flip card by adding class 'flipped' to parent div
+ * then check to see if two flipped cards match
  */
 function flipCard(card) {
-    console.log("hi from the flip", card);
-    card.classList.add("flipped");
 
-    incrementFlipcounter();
+    //Check to see if the card is already flipped
+    if (!card.classList.contains("flipped")) {
+        card.classList.add("flipped");
+        let remainder = incrementFlipcounter();
+
+        if (remainder === 1) {
+            firstCard = card;
+            console.log("first card ", firstCard);
+        } else {
+            secondCard = card;
+            console.log("second card ", secondCard);
+            checkMatchedPairs(firstCard, secondCard);
+        }
+    }
 }
 
 /**
@@ -165,8 +179,53 @@ function incrementFlipcounter() {
     let flips = $("#total-moves").text();
     flips++;
     $("#total-moves").text(flips);
+
+    return flips % 2;
 }
 
+/**
+ * Check pairs
+ */
+function checkMatchedPairs(firstCard, secondCard) {
+    console.log("test print ", firstCard, secondCard);
+
+    //grab the card "value" to be checked against other flipped cards
+    let cardValueOne = firstCard.getAttribute('data-cardNumber');
+    let cardValueTwo = secondCard.getAttribute('data-cardNumber');
+    // console.log("card values ", cardValueOne, cardValueTwo)
+
+    if (cardValueOne === cardValueTwo) {
+        console.log("match!");
+        // checkForGameWin();
+    } else {
+        setTimeout(() => {
+            firstCard.classList.remove("flipped");
+            secondCard.classList.remove("flipped");
+        }, 900);
+    }
+}
+
+/**
+ * Check for total number of pairs - 2 by counting "flipped"
+ * classes. Auto match the last pair, pause time etc
+ */
+function checkForGameWin() {
+    console.log("check game win");
+    let totalPairs = $('.card-container').toArray().length;
+    let matchedPairs = $('.flipped').toArray().length;
+
+    if (matchedPairs <= totalPairs - 2) {
+        return;
+    } else {
+        setTimeout(() => {
+            let unflipped = $('.card-container:not(.flipped)')
+            unflipped[0].classList.add('flipped');
+            unflipped[1].classList.add('flipped');
+
+        }, 300);
+    }
+
+}
 
 /**
  * Freeze the countdown timer
