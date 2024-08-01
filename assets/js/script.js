@@ -3,6 +3,7 @@
  */
 let firstCard;
 let secondCard;
+let countdown;
 
 /**
  * Wait for DOM to finish loading
@@ -44,6 +45,7 @@ function buildGrid(numOfRows, time) {
     $(".card-container").remove();
 
     // Set time on countdown
+    clearInterval(countdown);
     $("#time-remain").text(time);
 
     // Set moves counter to '0'
@@ -80,7 +82,7 @@ function buildGrid(numOfRows, time) {
     let cardDeck = $('.card-container').toArray();
     // shuffleCards(cardDeck);
     addMyListeners(cardDeck);
-    // countdownTimer(time, true);
+    countdownTimer(time);
 }
 
 
@@ -91,8 +93,18 @@ function buildGrid(numOfRows, time) {
 function resetGame() {
 
     let currentLevel = $(":root").css("--num-of-rows");
-    console.log("game reset", currentLevel);
-    buildGrid(currentLevel);
+    console.log("current level", currentLevel);
+
+    // clearInterval(countdown);
+    if (currentLevel == 4) {
+        $('[data-type="easy"]').trigger('click');
+        console.log("clicking easy");
+    } else {
+        $('[data-type="difficult"]').trigger('click');
+        console.log("clicking difficult");
+
+    }
+    // buildGrid(currentLevel, 5);
 }
 
 /**
@@ -121,24 +133,18 @@ function shuffleCards(cardDeck) {
  * to the HTML. Pass 'false' as the second param
  * to stop the timer
  */
-function countdownTimer(time, allowCountdown) {
+function countdownTimer(time) {
     console.log(time);
-    let countdown;
-    if (allowCountdown) {
-        countdown = setInterval(() => {
-            time--;
-            $("#time-remain").text(time);
-            if (time === 0) {
-                console.log("timed out");
-                clearInterval(countdown);
-                //Game over
-            }
-        }, 1000);
-    } else {
-        console.log("stopping timer");
-        clearInterval(countdown);
+    countdown = setInterval(() => {
+        time--;
+        $("#time-remain").text(time);
+        if (time === 0) {
+            console.log("timed out");
+            clearInterval(countdown);
+            //Game over
+        }
+    }, 1000);
 
-    }
 }
 
 /**
@@ -183,7 +189,7 @@ function flipCard(card) {
 }
 
 /**
- * Update the number of flips the user has made
+ * Update the number of gueses the user has made
  * write it to the DOM
  */
 function incrementFlipCounter() {
@@ -209,7 +215,9 @@ function checkMatchedPairs(firstCard, secondCard) {
     } else {
         setTimeout(() => {
             firstCard.classList.remove("flipped");
-            secondCard.classList.remove("flipped");
+            setTimeout(() => {
+                secondCard.classList.remove("flipped");
+            }, 150)
         }, 900);
     }
 }
@@ -228,10 +236,10 @@ function checkForGameWin() {
         // Flip remaining pair of cards
         let unflipped = $('.card-container:not(.flipped)');
         setTimeout(() => {
+            clearInterval(countdown);
 
             console.log("flip last pair");
             unflipped[0].classList.add('flipped');
-
             setTimeout(() => {
                 unflipped[1].classList.add('flipped');
             }, 150);
