@@ -4,6 +4,7 @@
 let firstCard;
 let secondCard;
 let countdown;
+let gameBusy = false;
 
 
 /**
@@ -24,9 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("difficult game set")
             } else if (this.getAttribute("data-type") === "reset") {
                 resetGame();
-            } 
+            }
             // else {
-                // alert(`data-type ${this.getAttribute("data-type")} not recognised.`);
+            // alert(`data-type ${this.getAttribute("data-type")} not recognised.`);
             // }
         })
 
@@ -162,7 +163,6 @@ function countdownTimer() {
             console.log("timed out");
             clearInterval(countdown);
             displayModal(".game-over-modal");
-            //Game over
         }
     }, 1000);
 
@@ -190,14 +190,16 @@ function addMyListeners(cardDeck) {
  * then check to see if two flipped cards match
  */
 function flipCard(card) {
-    //Check to see if the card is already flipped
-    if (!card.classList.contains("flipped")) {
+
+
+    //Check to see if this card is already flipped
+    if (!card.classList.contains("flipped") && !gameBusy) {
         card.classList.add("flipped");
 
         // get number of divs with 'flipped' class % 2 
         // to decide if this is first flip or second
         let flipFlop = $('.card-container.flipped').length;
-        console.log("Number of cards currently flipped ", flipFlop);
+        console.log("Number of cards currently flipped ", flipFlop, gameBusy);
 
         if (flipFlop % 2) {
             firstCard = card;
@@ -206,7 +208,7 @@ function flipCard(card) {
             secondCard = card;
             incrementFlipCounter();
             console.log("second card ", secondCard);
-
+            gameBusy = true;
             checkMatchedPairs(firstCard, secondCard);
         }
     }
@@ -231,12 +233,21 @@ function checkMatchedPairs(firstCard, secondCard) {
     //grab the card "value" to be checked against other flipped cards
     let cardValueOne = firstCard.getAttribute('data-cardNumber');
     let cardValueTwo = secondCard.getAttribute('data-cardNumber');
-    // console.log("card values ", cardValueOne, cardValueTwo)
+    console.log("card values ", cardValueOne, cardValueTwo)
 
     if (cardValueOne === cardValueTwo) {
         console.log("match!");
         checkForGameWin();
+        gameBusy = false;
     } else {
+        // let removeOne = document.querySelector(`[data-cardnumber="${cardValueOne}"]`);
+        // let removeTwo = document.querySelector(`[data-cardnumber="${cardValueTwo}"]`);
+        // console.log("removeOne", removeOne);
+        // console.log("removeTwo", removeTwo);
+        // removeOne.classList.remove('flipped');
+        // removeTwo.classList.remove('flipped');
+
+        // un-flip wrong gueses
         setTimeout(() => {
             firstCard.classList.remove("flipped");
             setTimeout(() => {
@@ -244,6 +255,9 @@ function checkMatchedPairs(firstCard, secondCard) {
             }, 150)
         }, 900);
     }
+    setTimeout(() => {
+        gameBusy = false;
+    }, 850);
 }
 
 /**
