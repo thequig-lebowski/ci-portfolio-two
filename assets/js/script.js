@@ -5,7 +5,6 @@ let firstCard;
 let secondCard;
 let countdown = 0;
 let gameBusy = false;
-let flipDelay = 900;
 
 
 /**
@@ -184,8 +183,7 @@ function addMyListeners(cardDeck) {
             flipCard(card);
             if ($('.card-container.flipped').length === 1) {
                 countdownTimer(true);
-            } else if ($('.card-container.flipped').length > 2) {
-                flipDelay = 0;
+            // } else if ($('.card-container.flipped').length > 2) {
             }
         });
     });
@@ -256,14 +254,14 @@ function checkMatchedPairs(checkFirst, checkSecond) {
         checkForGameWin();
         gameBusy = false;
     } else {
-        setTimeout(() => {
+        // setTimeout(() => {
             unflipCards();
             // unflipCards(checkFirst, checkSecond);
             // fcheckFirst.classList.remove("flipped");
             // setTimeout(() => {
             //     checkSecond.classList.remove("flipped");
             // }, 150)
-        }, 900);
+        // }, 900);
     }
     setTimeout(() => {
         gameBusy = false;
@@ -299,7 +297,7 @@ function unflipCards() {
         // setTimeout(() => {
         //     newVariable2.classList.remove("flipped");
         // }, 150)
-    }, flipDelay);
+    }, 900);
     // }
 }
 
