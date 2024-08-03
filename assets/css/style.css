@@ -72,14 +72,32 @@ h1 {
   line-height: 1.2;
 }
 
+/*   ----Buttons---   */
+.game-controls button {
+  border-radius: 4px;
+  font-family: 'Dela Gothic One', serif;
+  padding: 5px 7px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+
+button:hover {
+
+}
+
 .game-controls {
   /* justify-content: space-around; */
   margin-left: auto;
   margin-right: auto;
+
 }
 
 .game-controls button {
   margin: 5px 15px;
+  transition: transform 200ms ease-in-out;
+
 }
 
 .game-info {
@@ -93,7 +111,7 @@ h1 {
 
 .game-grid {
   display: grid;
-  border: solid red 2px;
+  /* border: solid red 2px; */
   grid-template-columns: repeat(var(--num-of-rows), auto);
   grid-template-rows: repeat(var(--num-of-rows), auto);
 
@@ -123,11 +141,11 @@ h1 {
   justify-content: center;
   align-items: center;
   /* transform: scale(0.7); */
-  transition: transform 300ms ease-in-out;
+  transition: transform 200ms ease-in-out;
 }
 
 .card-container:hover {
-  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .card-container.flipped .card-back {
@@ -137,6 +155,25 @@ h1 {
 .card-container.flipped .card-front {
   transform: rotateY(0deg);
 }
+
+/* .card-container:hover {
+  
+    transform: scale(1.1);
+   transition: all ease-in-out 500ms;
+   animation: wiggle 500ms infinite;
+   animation-timing-function: linear;   
+   animation-delay: 300ms;
+  }
+  
+  @keyframes wiggle {
+  
+   0% { transform: scale(1.1) rotate(0deg); }
+   25% { transform: scale(1.1) rotate(1deg); }
+   50% { transform: scale(1.1) rotate(0deg); }
+   75% { transform: scale(1.1) rotate(-1deg); }
+   100% { transform: scale(1.1) rotate(0deg); }
+  } */
+
 
 .card {
   /* position: absolute; */
@@ -175,6 +212,7 @@ h1 {
   /* display: block; */
   max-height: 95px;
   width: 80%;
+
   /* height: 95%; */
 }
 
@@ -226,8 +264,8 @@ h1 {
 .bubble:before {
   content: "";
   position: absolute;
-  top: 1%;
-  left: 5%;
+  top: 40%;
+  left: 55%;
   width: 90%;
   height: 90%;
   border-radius: 100%;
@@ -235,6 +273,8 @@ h1 {
   -webkit-filter: blur(5px);
   filter: blur(5px);
   z-index: 2;
+  -webkit-transform: rotateZ(164deg);
+  transform: rotateZ(164deg);
 }
 
 .bubble:after {
@@ -249,9 +289,11 @@ h1 {
   -webkit-filter: blur(1px);
   filter: blur(1px);
   z-index: 2;
+  -webkit-transform: rotateZ(-30deg);
+  transform: rotateZ(-30deg);
 }
 
-.bubble .shadow {
+/* .bubble .shadow {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -259,16 +301,16 @@ h1 {
       rgba(0, 0, 0, 0.1) 40%,
       rgba(0, 0, 0, 0) 50%);
   z-index: 1;
-}
+} */
 
-.bubble.plain {
+/* .bubble.plain {
   background: black;
-}
+} */
 
-.bubble.plain:before,
+/* .bubble.plain:before,
 .bubble.plain:after {
   display: none;
-}
+} */
 
 .bubble.ball {
   background: radial-gradient(circle at 50% 55%,
@@ -297,7 +339,8 @@ h1 {
   background: radial-gradient(circle at 50% 80%,
       rgba(255, 255, 255, 0),
       rgba(255, 255, 255, 0) 74%,
-      white 80%, white 84%,
+      white 80%,
+      white 84%,
       rgba(255, 255, 255, 0) 100%);
 }
 
@@ -410,7 +453,36 @@ h1 {
   .query-container {
     max-width: 640px;
   }
+
+  .card-container:hover,
+  .game-controls button:hover {
+    transform: scale(1.1);
+    /* transition: transform ease-in-out 500ms;
+    animation: wiggle 500ms infinite;
+    animation-timing-function: linear;   
+    animation-delay: 500ms; */
+   }
+   
+   /* @keyframes wiggle {
+   
+    0% { transform: scale(1.1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(1deg); }
+    50% { transform: scale(1.1) rotate(0deg); }
+    75% { transform: scale(1.1) rotate(-1deg); }
+    100% { transform: scale(1.1) rotate(0deg); }
+   } */
+  
+
+
+
+  .card-container.flipped:hover {
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
 }
+
 
 /* md */
 @media (min-width: 768px) {
