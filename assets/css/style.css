@@ -36,6 +36,7 @@ body {
   /* overflow-x: hidden; */
   display: flex;
   flex-direction: column;
+  background: radial-gradient(#a9d8da, #0ecaf0);
 }
 
 /* Mobile query-container utility class: */
@@ -140,7 +141,7 @@ h1 {
   align-items: center;
   overflow: hidden;
   backface-visibility: hidden;
-  transition: transform 350ms ease-in-out; 
+  transition: transform 350ms ease-in-out;
 }
 
 .card-front {
@@ -181,6 +182,205 @@ h1 {
   margin: auto;
   position: absolute;
 }
+
+/*  ---Background Bubbles---  */
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 40px;
+  /* background:#f1f1f1; */
+  /* background: radial-gradient(circle at bottom, #81e8f6, #76deef 10%, #055194 80%, #062745 100%); */
+  background: radial-gradient(circle at top, white, rgba(255, 255, 255, 0) 58%);
+
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: rise 10s infinite ease-in;
+}
+
+.bubble:before {
+  content: "";
+  position: absolute;
+  top: 1%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  border-radius: 100%;
+  background: radial-gradient(circle at top, white, rgba(255, 255, 255, 0) 58%);
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  z-index: 2;
+}
+
+.bubble:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 5%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  border-radius: 100%;
+  -webkit-filter: blur(1px);
+  filter: blur(1px);
+  z-index: 2;
+}
+
+.bubble .shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0) 50%);
+  z-index: 1;
+}
+
+.bubble.plain {
+  background: black;
+}
+
+.bubble.plain:before,
+.bubble.plain:after {
+  display: none;
+}
+
+.bubble.ball {
+  background: radial-gradient(circle at 50% 55%,
+      rgba(240, 245, 255, 0.9),
+      rgba(240, 245, 255, 0.9) 40%,
+      rgba(225, 238, 255, 0.8) 60%,
+      rgba(43, 130, 255, 0.4));
+}
+
+.bubble.ball:before {
+  -webkit-filter: blur(0);
+  filter: blur(0);
+  height: 80%;
+  width: 40%;
+  background: radial-gradient(circle at 130% 130%,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0) 46%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.8) 58%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0) 100%);
+}
+
+.bubble.ball:after {
+  display: block;
+  background: radial-gradient(circle at 50% 80%,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 74%,
+      white 80%, white 84%,
+      rgba(255, 255, 255, 0) 100%);
+}
+
+.bubble:nth-child(1) {
+  width: 40px;
+  height: 40px;
+  left: 10%;
+  animation-duration: 8s;
+}
+
+.bubble:nth-child(2) {
+  width: 20px;
+  height: 20px;
+  left: 20%;
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+  width: 50px;
+  height: 50px;
+  left: 35%;
+  animation-duration: 7s;
+  animation-delay: 2s;
+}
+
+.bubble:nth-child(4) {
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  animation-duration: 11s;
+  animation-delay: 0s;
+}
+
+.bubble:nth-child(5) {
+  width: 35px;
+  height: 35px;
+  left: 55%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(6) {
+  width: 45px;
+  height: 45px;
+  left: 65%;
+  animation-duration: 8s;
+  animation-delay: 3s;
+}
+
+.bubble:nth-child(7) {
+  width: 90px;
+  height: 90px;
+  left: 70%;
+  animation-duration: 12s;
+  animation-delay: 2s;
+}
+
+.bubble:nth-child(8) {
+  width: 25px;
+  height: 25px;
+  left: 80%;
+  animation-duration: 6s;
+  animation-delay: 2s;
+}
+
+.bubble:nth-child(9) {
+  width: 15px;
+  height: 15px;
+  left: 70%;
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+.bubble:nth-child(10) {
+  width: 90px;
+  height: 90px;
+  left: 25%;
+  animation-duration: 10s;
+  animation-delay: 4s;
+}
+
+@keyframes rise {
+  0% {
+    bottom: -100px;
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translate(100px);
+  }
+
+  100% {
+    bottom: 1080px;
+    transform: translateX(-200px);
+  }
+}
+
 
 /*   ---Media Queries--- */
 /* xs */
