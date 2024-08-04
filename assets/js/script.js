@@ -178,12 +178,13 @@ function countdownTimer(toggle) {
  * the first card is clicke
  */
 function addMyListeners(cardDeck) {
+    console.log("cardDeck is ... ", cardDeck);
     cardDeck.forEach(card => {
         card.addEventListener("click", () => {
             flipCard(card);
             if ($('.card-container.flipped').length === 1) {
                 countdownTimer(true);
-            // } else if ($('.card-container.flipped').length > 2) {
+                // } else if ($('.card-container.flipped').length > 2) {
             }
         });
     });
@@ -196,6 +197,13 @@ function addMyListeners(cardDeck) {
  */
 function flipCard(card) {
     //Check to see if this card is already flipped
+    // unflipCards();
+    // let guess = document.querySelectorAll('[data-guess="guess"');
+    // console.log("guess...", guess);
+    // if (guess.length === 1) {
+    //     unflipCards();
+    //     console.log("Calling unflipppppppp")
+    // }
     if (!card.classList.contains("flipped") && !gameBusy) {
         card.classList.add("flipped");
         card.setAttribute('data-guess', 'guess');
@@ -216,6 +224,7 @@ function flipCard(card) {
             checkMatchedPairs(firstCard, secondCard);
         }
     }
+
 }
 
 /**
@@ -251,16 +260,19 @@ function checkMatchedPairs(checkFirst, checkSecond) {
         console.log("match!");
         checkFirst.removeAttribute('data-guess');
         checkSecond.removeAttribute('data-guess');
+        // checkFirst.setAttribute('data-guess', 'match');
+        // checkSecond.setAttribute('data-guess', 'match');
         checkForGameWin();
         gameBusy = false;
+        return;
     } else {
         // setTimeout(() => {
-            unflipCards();
-            // unflipCards(checkFirst, checkSecond);
-            // fcheckFirst.classList.remove("flipped");
-            // setTimeout(() => {
-            //     checkSecond.classList.remove("flipped");
-            // }, 150)
+        unflipCards();
+        // unflipCards(checkFirst, checkSecond);
+        // fcheckFirst.classList.remove("flipped");
+        // setTimeout(() => {
+        //     checkSecond.classList.remove("flipped");
+        // }, 150)
         // }, 900);
     }
     setTimeout(() => {

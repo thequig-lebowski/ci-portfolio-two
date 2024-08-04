@@ -32,6 +32,7 @@ a:hover {
 /* Generic Styles */
 body {
   /* max-height: 100vh; */
+  font-family: 'Dela Gothic One', serif;
   height: 100vh;
   /* overflow-x: hidden; */
   display: flex;
@@ -72,20 +73,26 @@ h1 {
   line-height: 1.2;
 }
 
+h4 {
+  font-family: inherit;
+  font-size: clamp(18px, 3.5vw, 32px);
+  margin-bottom: .2rem;
+  font-weight: 400;
+  margin-top: 0;
+}
+
 /*   ----Buttons---   */
 .game-controls button {
   border-radius: 4px;
   font-family: 'Dela Gothic One', serif;
   padding: 5px 7px;
-  font-size: 1.5rem;
+  font-size: .9rem;
   cursor: pointer;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
 }
 
-button:hover {
 
-}
 
 .game-controls {
   /* justify-content: space-around; */
@@ -203,7 +210,7 @@ button:hover {
 
 .card-back {
   position: absolute;
-  background: #053fbc;
+  background: #0e94d2;
   border: 2px solid white;
 }
 
@@ -220,8 +227,8 @@ button:hover {
   display: none;
 }
 
-.selected {
-  border: solid red 5px;
+.card-front.selected {
+  border: solid red 2px;
 }
 
 /*    ---Modals---    */
