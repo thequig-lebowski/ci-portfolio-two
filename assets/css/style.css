@@ -73,6 +73,16 @@ h1 {
   line-height: 1.2;
 }
 
+h2 {
+  color: red;
+  text-shadow:
+  3px 3px 0 #000,
+  -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
+}
+
 h4 {
   font-family: inherit;
   font-size: clamp(18px, 3.5vw, 32px);
@@ -121,14 +131,18 @@ h4 {
   /* border: solid red 2px; */
   grid-template-columns: repeat(var(--num-of-rows), auto);
   grid-template-rows: repeat(var(--num-of-rows), auto);
+  /* magic */
+  /* grid-template-columns: repeat(auto-fit, minmax(min(100%/3, max(64px, 100%/7)), 1fr)); */
+
+  /* width: 100%; */
 
   /* grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
   grid-auto-rows: 1fr; */
-  column-gap: 15px;
+  column-gap: 12px;
   row-gap: 10px;
   /* max-width: 700px; */
-  padding: 10px 0;
-  /* overflow: hidden; */
+  padding: 10px 10px 30px 10px;
+  overflow: hidden;
 
 
 }
@@ -217,10 +231,10 @@ h4 {
 .front-image,
 .back-image {
   /* display: block; */
-  max-height: 95px;
+  max-height: 110px;
   width: 80%;
 
-  /* height: 95%; */
+  /* height: auto; */
 }
 
 .hidden {
@@ -232,10 +246,6 @@ h4 {
 }
 
 /*    ---Modals---    */
-.welcome-modal {
-  max-width: 50ch;
-}
-
 .modal {
   left: 0;
   right: 0;
@@ -243,6 +253,52 @@ h4 {
   bottom: 0;
   margin: auto;
   position: absolute;
+  max-width: 50ch;
+  border-radius: 11px;
+  padding: 5px 10px;
+
+  box-shadow: 10px 14px 8px 0 rgba(53, 37, 37, 0.5),
+  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* .modal[open]::backdrop {
+  animation: backdrop-fade 2s  ease forwards;
+}
+
+@keyframes backdrop-fade {
+  from {
+    background: transparent;
+  }
+  to{
+    background: rgba(0, 0, 0, 0.6);
+  }
+} */
+
+.modals {
+  text-align: center;
+  padding: 10px, 20px;
+  overflow: hidden;
+  
+}
+
+h3 {
+  transition: transform 350ms ease-in-out;
+}
+
+h3:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  
+
+
+}
+
+.welcome-modal,
+.game-over,
+.winner,
+.leader-board,
+.how-to-play {
+ display: none; 
 }
 
 /*  ---Background Bubbles---  */
@@ -488,6 +544,12 @@ h4 {
     animation: none;
   }
 
+  /* .card-container {
+    border: solid red 1px;
+    width: 100%;
+    aspect-ratio: 1/1;
+  } */
+
 }
 
 
@@ -495,6 +557,12 @@ h4 {
 @media (min-width: 768px) {
   .query-container {
     max-width: 768px;
+  }
+
+  .front-image,
+  .back-image {
+    /* max-height: 200px; */
+    /* aspect-ratio: 1/1; */
   }
 }
 

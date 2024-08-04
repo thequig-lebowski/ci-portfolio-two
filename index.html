@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Styles and Favicon-->
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="icon" href="assets/images/sock_15.png" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Document</title>
+    <meta name="theme-color" content="#0e94d2">
+    <title>Laundro-Match</title>
 </head>
 
 <body>
@@ -20,27 +22,39 @@
     <!-- Main Content -->
     <main>
         <!-- Modals -->
-        <dialog class="modal welcome-modal">
-            <h2>Welcome to Laundro-Match</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero sunt saepe, earum eos rem autem iste.
-                Ratione laborum facilis nulla suscipit nesciunt neque dolorum dolore obcaecati, vitae tenetur nemo
-                corporis.</p>
-            <button class="button close-button">Close modal</button>
-        </dialog>
-        <dialog class="modal game-over-modal">
+        <dialog class="modal">
+            <div class="modals welcome-modal">
+                <h2>Welcome!</h2>
+                <p>It's laundry day and all your socks are mixed up!</p>
+                    <h3>How to play</h3>
+                    <p>It's laundry day and time to pair your socks.</p>
+                    <p>Flip pairs of cards at a time to find all the machting socks</p>
+                    <p>Find all the pairs before the clock runs out and with the fewest moves</p>
+                    <h3 class="button close-button">Click to Start</h3>
+                    <h3 class="button leader-board-button">Leader Board</h3>
+            </div>
+            <div class="game-over">
             <h2>Game Over!</h2>
             <p>Click to play again</p>
-            <button class="button close-button">Close modal</button>
-        </dialog>
-        <dialog class="modal winner-modal">
+                <h3 class="button close-button">Try Again</h3>
+                <h3 class="button leader-board-button">Leader Board</h3>
+            </div>
+            <div class="winner">
             <h2>Winner!</h2>
             <p>Click to play again</p>
-            <button class="button close-button">Close modal</button>
-        </dialog>
-        <dialog class="modal leader-board-modal">
+                <button class="button close-button">Play Again</button>
+                <button class="button leader-board-button">Leader Board</button>
+            </div>
+            <div class="leader-board">
             <h2>Top Scores</h2>
             <p>Click to play again</p>
-            <button class="button close-button">Close modal</button>
+                <button class="button close-button">Play Again</button>
+            </div>
+            <div class="how-to-play">
+                <h2>How To Play</h2>
+                <p>Click to play again</p>
+                <button class="button close-button">Start Game</button>
+            </div>
         </dialog>
         <!-- Game Controls -->
         <section class="query-container game-controls">

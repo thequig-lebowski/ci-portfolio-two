@@ -40,15 +40,39 @@ document.addEventListener("DOMContentLoaded", function () {
  * Modal toggle on and off
  */
 function displayModal(myModal) {
+    // select all children of dialog and and set to display:none to clear previous popups
+    $(`.modal`).children().css("display", "none");
 
-    let modal = document.querySelector(`${myModal}`);
-    let closeModal = document.querySelector(`${myModal} > .close-button`);
-
+    $(`${myModal}`).css("display", "block");
+    let modal = document.querySelector(`.modal`);
+    console.log("modal", modal);
     modal.showModal();
+    
+    // let currentModal = document.querySelector(`${myModal}`);
+    // let modalButtons = currentModal.getElementsByTagName("button");
+    // console.log("modal buttons = ", modalButtons);
+    // for (let item of modalButtons) {
+    //     item.addEventListener("click", function () {
+    //         if (this.getElementsByClassName("close-button")) {
+    //             modal.close();
+    //             console.log("close dialog",item.classList);
+    //             resetGame();
+    //         } else if (this.getElementsByClassName("leader-board-button")) {
+    //             console.log("leader board button press", item.classList);
+    //         } 
+    //     })
+    // }
 
+
+    let closeModal = document.querySelector(`${myModal} > .close-button`);
     closeModal.addEventListener("click", () => {
         modal.close();
         resetGame();
+    });
+
+    let leaderBoard = document.querySelector(`${myModal} > .leader-board-button`);
+    leaderBoard.addEventListener("click", () => {
+        console.log("leader board button press!");
     });
 }
 
@@ -99,7 +123,7 @@ function buildGrid(numOfRows, time) {
     $(".game-grid").append(grid);
 
     let cardDeck = $('.card-container').toArray();
-    // shuffleCards(cardDeck);
+    shuffleCards(cardDeck);
     addMyListeners(cardDeck);
     // countdownTimer();
 }
@@ -154,7 +178,7 @@ function countdownTimer(toggle) {
             if (time === 0) {
                 clearInterval(countdown);
                 console.log("clearinterval");
-                displayModal(".game-over-modal");
+                displayModal(".game-over");
             }
         }, 1000);
     } else {
@@ -335,7 +359,7 @@ function checkForGameWin() {
                 unflipped[1].classList.add('flipped');
             }, 150);
         }, 300);
-        displayModal(".winner-modal");
+        displayModal(".winner");
         // clearInterval(countdown);
         countdownTimer(false);
         console.log("clearinterval");
