@@ -58,7 +58,7 @@ body {
   font-size: clamp(42px, 9vw, 75px);
   /* text-align: center; */
   padding-top: 20px;
-  color: blue;
+  color: red;
   text-shadow:
     3px 3px 0 #000,
     -1px -1px 0 #000,
