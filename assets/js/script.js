@@ -210,11 +210,12 @@ function addMyListeners(cardDeck) {
                 // } else if ($('.card-container.flipped').length > 2) {
             }
         });
+        // JS version of css :hover
         card.addEventListener("mouseover", () => {
-            // if (isSelectable(cardDeck) === 2) {
-                console.log("Mouse over add hover!", card);
+            if (isSelectable()) {
+                console.log("Mouse over add hover!");
                 card.classList.add("scale");
-            // }
+            }
         });
         card.addEventListener("mouseleave", () => {
             // console.log("Mouse over remove hover!", card);
@@ -226,13 +227,13 @@ function addMyListeners(cardDeck) {
 /**
  * Check to see if the game is busy
  */
-function isSelectable(cardDeck) {
-    let selected = 0;
-    cardDeck.forEach(card => {
-        if (ard.hasAttribute("data-guess")) {
-            selected++;
-        }
-    });
+function isSelectable() {
+    let selectable = $('[data-guess="guess"');
+    if (selectable.length === 2) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 /**
