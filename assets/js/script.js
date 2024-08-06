@@ -121,7 +121,7 @@ function buildGrid(numOfRows, time) {
     $(".game-grid").append(grid);
 
     let cardDeck = $('.card-container').toArray();
-    shuffleCards(cardDeck);
+    // shuffleCards(cardDeck);
     addMyListeners(cardDeck);
     // countdownTimer();
 }
@@ -212,19 +212,18 @@ function addMyListeners(cardDeck) {
         // JS version of css :hover
         card.addEventListener("mouseover", () => {
             if (isSelectable()) {
-                console.log("Mouse over add hover!");
                 card.classList.add("scale");
             }
         });
         card.addEventListener("mouseleave", () => {
-            // console.log("Mouse over remove hover!", card);
             card.classList.remove("scale");
         });
     });
 }
 
 /**
- * Check to see if the game is busy
+ * Pauses hover effect until wrong guesses are unflipped
+ * returns false if there are two wrong gueses on the board
  */
 function isSelectable() {
     let selectable = $('[data-guess="guess"');
@@ -303,9 +302,13 @@ function checkMatchedPairs(checkFirst, checkSecond) {
         console.log("match!");
         checkFirst.removeAttribute('data-guess');
         checkSecond.removeAttribute('data-guess');
+        checkForGameWin();
+        checkFirst.classList.add('animate-matched-pair');
+        setTimeout(() => {
+            checkSecond.classList.add('animate-matched-pair');
+        }, 150);
         // checkFirst.setAttribute('data-guess', 'match');
         // checkSecond.setAttribute('data-guess', 'match');
-        checkForGameWin();
         return;
     } else {
         // setTimeout(() => {
@@ -369,9 +372,9 @@ function checkForGameWin() {
         let unflipped = $('.card-container:not(.flipped)');
         setTimeout(() => {
             console.log("flip last pair");
-            unflipped[0].classList.add('flipped');
+            unflipped[0].classList.add('flipped', 'animate-matched-pair');
             setTimeout(() => {
-                unflipped[1].classList.add('flipped');
+                unflipped[1].classList.add('flipped', 'animate-matched-pair');
             }, 150);
         }, 300);
         displayModal(".winner");
