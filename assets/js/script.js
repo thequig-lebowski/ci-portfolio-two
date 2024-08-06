@@ -85,8 +85,8 @@ function buildGrid(numOfRows, time) {
     $(".card-container").remove();
 
     // Set time on countdown
-    clearInterval(countdown);
-    // countdownTimer(false);
+    // clearInterval(countdown);
+    countdownTimer(false);
     $("#time-remain").text(time);
 
     // Set moves counter to '0'
@@ -203,6 +203,8 @@ function addMyListeners(cardDeck) {
     console.log("cardDeck is ... ", cardDeck);
     cardDeck.forEach(card => {
         card.addEventListener("click", () => {
+            console.log("clicking on a card");
+            unflipCards(10);
             flipCard(card);
             if ($('.card-container.flipped').length === 1) {
                 countdownTimer(true);
@@ -239,14 +241,9 @@ function isSelectable() {
  * then check to see if two flipped cards match
  */
 function flipCard(card) {
-    //Check to see if this card is already flipped
+
     // unflipCards();
-    // let guess = document.querySelectorAll('[data-guess="guess"');
-    // console.log("guess...", guess);
-    // if (guess.length === 1) {
-    //     unflipCards();
-    //     console.log("Calling unflipppppppp")
-    // }
+
     if (!card.classList.contains("flipped") && (isSelectable() === true)) {
         card.classList.add("flipped");
         card.setAttribute('data-guess', 'guess');
@@ -312,7 +309,7 @@ function checkMatchedPairs(checkFirst, checkSecond) {
         return;
     } else {
         // setTimeout(() => {
-        unflipCards();
+        unflipCards(900);
         // unflipCards(checkFirst, checkSecond);
         // fcheckFirst.classList.remove("flipped");
         // setTimeout(() => {
@@ -325,34 +322,24 @@ function checkMatchedPairs(checkFirst, checkSecond) {
 /**
  * Unflip incorrect gueses
  */
-function unflipCards() {
+function unflipCards(flipTimeout) {
 
     let wrongGuesses = $('[data-guess="guess"');
-    console.log("wrongGuesses.length", wrongGuesses.length);
-    // if (wrongGuesses.length >= 2) {
+    // console.log("wrongGuesses.length", wrongGuesses.length);
+    if (wrongGuesses.length >= 2) {
 
-    console.log("unflipppppp");
-    console.log("wrongGuesses ", wrongGuesses[0], wrongGuesses[1]);
-    setTimeout(() => {
-        wrongGuesses[0].classList.remove("flipped");
+        // console.log("click to unflip");
+        // console.log("wrongGuesses ", wrongGuesses[0], wrongGuesses[1]);
         setTimeout(() => {
-            // for (let i = 0; i < wrongGuesses.length; i++) {
-            //     wrongGuesses[i].removeAttribute("data-guess");
-            // }
+            wrongGuesses[0].classList.remove("flipped");
+            setTimeout(() => {
+                wrongGuesses[1].classList.remove("flipped");
+                wrongGuesses[0].removeAttribute("data-guess");
+                wrongGuesses[1].removeAttribute("data-guess");
 
-            wrongGuesses[1].classList.remove("flipped");
-            wrongGuesses[0].removeAttribute("data-guess");
-            wrongGuesses[1].removeAttribute("data-guess");
-
-        }, 150)
-
-        // function unflipCards(newVariable1, newVariable2) {
-        // newVariable1.classList.remove("flipped");
-        // setTimeout(() => {
-        //     newVariable2.classList.remove("flipped");
-        // }, 150)
-    }, 900);
-    // }
+            }, 150)
+        }, flipTimeout);
+    }
 }
 
 
@@ -377,7 +364,16 @@ function checkForGameWin() {
                 unflipped[1].classList.add('flipped', 'animate-matched-pair');
             }, 150);
         }, 300);
-        displayModal(".winner");
+        //Set a delay for the matched-pair-animation on the final pair
+        setTimeout(() => {
+            unflipped[0].classList.add('animate-matched-pair');
+            setTimeout(() => {
+                unflipped[1].classList.add('animate-matched-pair');
+            }, 150);
+        }, 300);
+        setTimeout(() => {
+            displayModal(".winner");
+        }, 2000);
         // clearInterval(countdown);
         countdownTimer(false);
         console.log("clearinterval");
