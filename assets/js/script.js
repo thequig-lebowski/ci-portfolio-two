@@ -68,10 +68,10 @@ function displayModal(myModal) {
         resetGame();
     });
 
-    let leaderBoard = document.querySelector(`${myModal} > .leader-board-button`);
-    leaderBoard.addEventListener("click", () => {
-        console.log("leader board button press!");
-    });
+    // let leaderBoard = document.querySelector(`${myModal} > .leader-board-button`);
+    // leaderBoard.addEventListener("click", () => {
+    //     console.log("leader board button press!");
+    // });
 }
 
 /**
@@ -301,7 +301,7 @@ function checkMatchedPairs(checkFirst, checkSecond) {
             setTimeout(() => {
                 checkSecond.classList.add('animate-matched-pair');
             }, 150);
-        }, 450);
+        }, 350);
         return;
     } else {
         unflipCards(900);
@@ -369,7 +369,7 @@ function checkForGameWin(param1, param2) {
             setTimeout(() => {
                 unflipped[1].classList.add('animate-matched-pair');
             }, 150);
-        }, 950);
+        }, 650);
         setTimeout(() => {
             displayModal(".winner");
         }, 2000);
