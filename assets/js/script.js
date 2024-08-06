@@ -4,7 +4,6 @@
 let firstCard;
 let secondCard;
 let countdown = 0;
-let gameBusy = false;
 
 
 /**
@@ -249,14 +248,14 @@ function flipCard(card) {
     //     unflipCards();
     //     console.log("Calling unflipppppppp")
     // }
-    if (!card.classList.contains("flipped") && !gameBusy) {
+    if (!card.classList.contains("flipped") && (isSelectable() === true)) {
         card.classList.add("flipped");
         card.setAttribute('data-guess', 'guess');
 
         // get number of divs with 'flipped' class % 2 
         // to decide if this is first flip or second
         let flipFlop = $('.card-container.flipped').length;
-        console.log("Number of cards currently flipped ", flipFlop, gameBusy);
+        console.log("Number of cards currently flipped ", flipFlop);
 
         if (flipFlop % 2) {
             firstCard = card;
@@ -265,7 +264,6 @@ function flipCard(card) {
             secondCard = card;
             incrementFlipCounter();
             console.log("second card ", secondCard);
-            gameBusy = true;
             checkMatchedPairs(firstCard, secondCard);
         }
     }
@@ -308,7 +306,6 @@ function checkMatchedPairs(checkFirst, checkSecond) {
         // checkFirst.setAttribute('data-guess', 'match');
         // checkSecond.setAttribute('data-guess', 'match');
         checkForGameWin();
-        gameBusy = false;
         return;
     } else {
         // setTimeout(() => {
@@ -320,9 +317,6 @@ function checkMatchedPairs(checkFirst, checkSecond) {
         // }, 150)
         // }, 900);
     }
-    setTimeout(() => {
-        gameBusy = false;
-    }, 1250);
 }
 
 /**
