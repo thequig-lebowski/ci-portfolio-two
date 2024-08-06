@@ -244,12 +244,8 @@ function flipCard(card) {
 
     if (!card.classList.contains("flipped") && (isSelectable() === true)) {
         card.classList.add("flipped");
-        
-        // let cardFront = card.querySelector('.card-front');
-        // console.log("cardfront", cardFront);
-        // cardFront.classList.add("selected");
-        card.children[1].classList.add('selected');
-        
+
+        // card.children[1].classList.add('selected');
         card.setAttribute('data-guess', 'guess');
 
         // get number of divs with 'flipped' class % 2 
@@ -288,23 +284,24 @@ function checkMatchedPairs(checkFirst, checkSecond) {
     //grab the card "value" to be checked against other flipped cards
     let cardValueOne = checkFirst.getAttribute('data-cardNumber');
     let cardValueTwo = checkSecond.getAttribute('data-cardNumber');
-  
+
     let cardData1 = checkFirst.getAttribute('data-guess');
     let cardData2 = checkSecond.getAttribute('data-guess');
     console.log("cardData 1 and 2", cardData1, cardData2);
-    
+
     console.log("card values ", cardValueOne, cardValueTwo)
 
     if (cardValueOne === cardValueTwo) {
         console.log("match!");
-        // removeSelected();
         checkFirst.removeAttribute('data-guess');
         checkSecond.removeAttribute('data-guess');
         checkForGameWin(checkFirst, checkSecond);
-        checkFirst.classList.add('animate-matched-pair');
         setTimeout(() => {
-            checkSecond.classList.add('animate-matched-pair');
-        }, 150);
+            checkFirst.classList.add('animate-matched-pair');
+            setTimeout(() => {
+                checkSecond.classList.add('animate-matched-pair');
+            }, 150);
+        }, 450);
         return;
     } else {
         unflipCards(900);
@@ -313,34 +310,23 @@ function checkMatchedPairs(checkFirst, checkSecond) {
 
 
 /**
- * Get all elements previously 'selected' and reset them
- * by removing class.
+ * Get all currently guesed cards and add a highlight boarder to them
+ * In reality the highlight colour is default but to animate it we cheat
+ * it and do it a little backwards.
  */
-function removeSelected(card1, card2) {
-
+function addSelected(card1, card2) {
     setTimeout(() => {
-        card1.children[1].classList.remove('selected');
-        card2.children[1].classList.remove('selected');
+        card1.children[1].classList.add('selected');
+        card2.children[1].classList.add('selected');
         console.log("removing selected border...");
-    }, 2000);
-
-
-
-
-    // setTimeout(() => {
-    // let selected = document.querySelectorAll('.selected');
-    // selected.forEach(item => {
-    //     item.classList.remove("selected");
-    // });
-    // console.log("removing selected border...");
-    // }, 2000);
+    }, 900);
 }
+
 
 /**
  * Simply unflip incorrect gueses
  */
 function unflipCards(flipTimeout) {
-    // removeSelected();
     let wrongGuesses = $('[data-guess="guess"');
     if (wrongGuesses.length >= 2) {
         setTimeout(() => {
@@ -361,7 +347,7 @@ function unflipCards(flipTimeout) {
  * classes. Auto match the last pair, pause time etc
  */
 function checkForGameWin(param1, param2) {
-    removeSelected(param1, param2);
+    addSelected(param1, param2);
     let totalPairs = $('.card-container').toArray().length;
     let matchedPairs = $('.flipped').toArray().length;
 
@@ -372,9 +358,9 @@ function checkForGameWin(param1, param2) {
         let unflipped = $('.card-container:not(.flipped)');
         setTimeout(() => {
             console.log("flip last pair");
-            unflipped[0].classList.add('flipped', 'animate-matched-pair');
+            unflipped[0].classList.add('flipped');
             setTimeout(() => {
-                unflipped[1].classList.add('flipped', 'animate-matched-pair');
+                unflipped[1].classList.add('flipped');
             }, 150);
         }, 300);
         //Set a delay for the matched-pair-animation on the final pair
@@ -383,7 +369,7 @@ function checkForGameWin(param1, param2) {
             setTimeout(() => {
                 unflipped[1].classList.add('animate-matched-pair');
             }, 150);
-        }, 300);
+        }, 950);
         setTimeout(() => {
             displayModal(".winner");
         }, 2000);

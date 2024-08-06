@@ -83,6 +83,11 @@ h2 {
     1px 1px 0 #000;
 }
 
+h3:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 h4 {
   font-family: inherit;
   font-size: clamp(18px, 3.5vw, 32px);
@@ -150,18 +155,12 @@ h4 {
 /* Card styles */
 
 .card-container {
-  /* max-height: 200px; */
-  /* max-width: 200px; */
   position: relative;
-  /* border: solid red 1px; */
-  /* width: 115px; */
-  /* height: 115px; */
   justify-self: center;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* transform: scale(0.7); */
   transition: transform 200ms ease-in-out;
 }
 
@@ -210,25 +209,6 @@ h4 {
   transform: rotateY(0deg);
 }
 
-/* .card-container:hover {
-  
-    transform: scale(1.1);
-   transition: all ease-in-out 500ms;
-   animation: wiggle 500ms infinite;
-   animation-timing-function: linear;   
-   animation-delay: 300ms;
-  }
-  
-  @keyframes wiggle {
-  
-   0% { transform: scale(1.1) rotate(0deg); }
-   25% { transform: scale(1.1) rotate(1deg); }
-   50% { transform: scale(1.1) rotate(0deg); }
-   75% { transform: scale(1.1) rotate(-1deg); }
-   100% { transform: scale(1.1) rotate(0deg); }
-  } */
-
-
 .card {
   /* position: absolute; */
   border-radius: 11px;
@@ -249,16 +229,30 @@ h4 {
   /* position: absolute; */
   transform: rotateY(180deg);
   background-color: white;
-  border: 2px solid white;
+  border: 2px solid #0ecaf0;
   box-shadow: 0 4px 8px 0 rgba(53, 37, 37, 0.5),
     0 6px 20px 0 rgba(0, 0, 0, 0.19),
     inset 0 0 30px 5px #9ac0eb;
 }
 
+
 .card-front.selected {
-  border: solid teal 2px;
-  animation: border-color 2s ease-in;
+  transition: border-color 1s linear;
+
+  border-color: white;
+  /* border: solid white 2px;
+  animation: border-fade 2s ease forwards; */
 }
+
+/* @keyframes border-fade {
+  0% {
+    border-color: rgba(14, 202, 240, 0);
+
+  }
+  100% {
+    border-color: rgba(255, 255, 255, 1);
+  }
+} */
 
 .card-back {
   position: absolute;
@@ -319,13 +313,10 @@ h3 {
   transition: transform 350ms ease-in-out;
 }
 
-h3:hover {
+/* h3:hover {
   transform: scale(1.1);
   cursor: pointer;
-
-
-
-}
+} */
 
 .welcome-modal,
 .game-over,
@@ -554,35 +545,12 @@ h3:hover {
   /* .card-container:hover, */
   .game-controls button:hover {
     transform: scale(1.1);
-    /* transition: transform ease-in-out 500ms;
-    animation: wiggle 500ms infinite;
-    animation-timing-function: linear;   
-    animation-delay: 500ms; */
   }
-
-  /* @keyframes wiggle {
-   
-    0% { transform: scale(1.1) rotate(0deg); }
-    25% { transform: scale(1.1) rotate(1deg); }
-    50% { transform: scale(1.1) rotate(0deg); }
-    75% { transform: scale(1.1) rotate(-1deg); }
-    100% { transform: scale(1.1) rotate(0deg); }
-   } */
-
-
-
 
   .card-container.flipped:hover {
     transform: none;
     transition: none;
-    /* animation: none; */
   }
-
-  /* .card-container {
-    border: solid red 1px;
-    width: 100%;
-    aspect-ratio: 1/1;
-  } */
 
 }
 
