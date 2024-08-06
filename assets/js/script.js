@@ -29,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // else {
             // alert(`data-type ${this.getAttribute("data-type")} not recognised.`);
             // }
-        })
-
+        });
     }
     // countdownTimer(false);
     buildGrid(4, 60);
@@ -47,7 +46,7 @@ function displayModal(myModal) {
     let modal = document.querySelector(`.modal`);
     console.log("modal", modal);
     modal.showModal();
-    
+
     // let currentModal = document.querySelector(`${myModal}`);
     // let modalButtons = currentModal.getElementsByTagName("button");
     // console.log("modal buttons = ", modalButtons);
@@ -211,9 +210,30 @@ function addMyListeners(cardDeck) {
                 // } else if ($('.card-container.flipped').length > 2) {
             }
         });
+        card.addEventListener("mouseover", () => {
+            // if (isSelectable(cardDeck) === 2) {
+                console.log("Mouse over add hover!", card);
+                card.classList.add("scale");
+            // }
+        });
+        card.addEventListener("mouseleave", () => {
+            // console.log("Mouse over remove hover!", card);
+            card.classList.remove("scale");
+        });
     });
 }
 
+/**
+ * Check to see if the game is busy
+ */
+function isSelectable(cardDeck) {
+    let selected = 0;
+    cardDeck.forEach(card => {
+        if (ard.hasAttribute("data-guess")) {
+            selected++;
+        }
+    });
+}
 
 /**
  * flip card by adding class 'flipped' to parent div
