@@ -197,7 +197,6 @@ h4 {
   }
 }
 
-
 .card-container.scale {
   cursor: pointer;
   transform: scale(1.1);
@@ -256,6 +255,24 @@ h4 {
     inset 0 0 30px 5px #9ac0eb;
 }
 
+.card-front.selected {
+  border: solid red 2px;
+  animation: selectedTransition 2s ease-in-out;
+
+  @keyframes selectedTransition {
+
+    100% {
+      border-color: rgba(255, 0, 0, 1);
+    }
+
+    0% {
+      border-color: rgba(255, 0, 0, 0);
+    }
+  }
+
+
+}
+
 .card-back {
   position: absolute;
   background: #0e94d2;
@@ -273,10 +290,6 @@ h4 {
 
 .hidden {
   display: none;
-}
-
-.card-front.selected {
-  border: solid red 2px;
 }
 
 /*    ---Modals---    */

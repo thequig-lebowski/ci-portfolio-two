@@ -242,10 +242,13 @@ function isSelectable() {
  */
 function flipCard(card) {
 
-    // unflipCards();
-
     if (!card.classList.contains("flipped") && (isSelectable() === true)) {
         card.classList.add("flipped");
+        
+        let cardFront = card.querySelector('.card-front');
+        console.log("cardfront", cardFront);
+        cardFront.classList.add("selected");
+        
         card.setAttribute('data-guess', 'guess');
 
         // get number of divs with 'flipped' class % 2 
@@ -285,18 +288,16 @@ function checkMatchedPairs(checkFirst, checkSecond) {
     //grab the card "value" to be checked against other flipped cards
     let cardValueOne = checkFirst.getAttribute('data-cardNumber');
     let cardValueTwo = checkSecond.getAttribute('data-cardNumber');
-    // test; add custom data-set to target in unflipCards();
-    // checkFirst.setAttribute('data-guess', 'guess');
-    // checkSecond.setAttribute('data-guess', 'guess');
+  
     let cardData1 = checkFirst.getAttribute('data-guess');
     let cardData2 = checkSecond.getAttribute('data-guess');
     console.log("cardData 1 and 2", cardData1, cardData2);
-    // test ends
-
+    
     console.log("card values ", cardValueOne, cardValueTwo)
 
     if (cardValueOne === cardValueTwo) {
         console.log("match!");
+        removeSelected();
         checkFirst.removeAttribute('data-guess');
         checkSecond.removeAttribute('data-guess');
         checkForGameWin();
@@ -304,39 +305,39 @@ function checkMatchedPairs(checkFirst, checkSecond) {
         setTimeout(() => {
             checkSecond.classList.add('animate-matched-pair');
         }, 150);
-        // checkFirst.setAttribute('data-guess', 'match');
-        // checkSecond.setAttribute('data-guess', 'match');
         return;
     } else {
-        // setTimeout(() => {
         unflipCards(900);
-        // unflipCards(checkFirst, checkSecond);
-        // fcheckFirst.classList.remove("flipped");
-        // setTimeout(() => {
-        //     checkSecond.classList.remove("flipped");
-        // }, 150)
-        // }, 900);
     }
 }
 
+
 /**
- * Unflip incorrect gueses
+ * Get all elements previously 'selected' and reset them
+ * by removing class.
+ */
+function removeSelected() {
+    setTimeout(() => {
+    let selected = document.querySelectorAll('.selected');
+    selected.forEach(item => {
+        item.classList.remove("selected");
+    });
+    }, 2000);
+}
+
+/**
+ * Simply unflip incorrect gueses
  */
 function unflipCards(flipTimeout) {
-
+    removeSelected();
     let wrongGuesses = $('[data-guess="guess"');
-    // console.log("wrongGuesses.length", wrongGuesses.length);
     if (wrongGuesses.length >= 2) {
-
-        // console.log("click to unflip");
-        // console.log("wrongGuesses ", wrongGuesses[0], wrongGuesses[1]);
         setTimeout(() => {
             wrongGuesses[0].classList.remove("flipped");
             setTimeout(() => {
                 wrongGuesses[1].classList.remove("flipped");
                 wrongGuesses[0].removeAttribute("data-guess");
                 wrongGuesses[1].removeAttribute("data-guess");
-
             }, 150)
         }, flipTimeout);
     }
