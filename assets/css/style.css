@@ -343,7 +343,7 @@ h3 {
 
 .bubble {
   position: absolute;
-  bottom: -100px;
+  bottom: -200px;
   width: 40px;
   height: 40px;
   background: radial-gradient(circle at top, white, rgba(255, 255, 255, 0) 58%);
@@ -583,6 +583,13 @@ h3 {
 @media (min-width: 1280px) {
   .query-container {
     max-width: 1280px;
+  }
+
+  /* this will go in the small screen section once i change the order of the media q's */
+  .card-container.scale {
+    /* scale: (1); */
+    transform: none;
+    /* transition: none; */
   }
 }
 
