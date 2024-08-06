@@ -588,3 +588,46 @@ h3 {
     max-width: 1536px;
   }
 }
+
+/*   ---Error 404---   */
+#error-404 {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#heading-404 {
+  font-family: 'Dela Gothic One', serif;
+  color: red;
+  font-size: 6rem;
+  text-shadow:
+    3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  padding-bottom: 30px;
+}
+
+#error-404>h3 {
+  padding-bottom: 20px;
+}
+
+#link {
+  transition: transform 200ms ease-in-out;
+}
+
+#link:hover {
+  /* transition: all ease-in-out 300ms; */
+  transform: scale(1.1);
+  /* color: pink; */
+}
+
+#error-404>h3:hover {
+  /* scale: (1); */
+  transform: none;
+  cursor: default;
+}
