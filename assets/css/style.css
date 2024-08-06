@@ -256,21 +256,8 @@ h4 {
 }
 
 .card-front.selected {
-  border: solid red 2px;
-  animation: selectedTransition 2s ease-in-out;
-
-  @keyframes selectedTransition {
-
-    100% {
-      border-color: rgba(255, 0, 0, 1);
-    }
-
-    0% {
-      border-color: rgba(255, 0, 0, 0);
-    }
-  }
-
-
+  border: solid teal 2px;
+  animation: border-color 2s ease-in;
 }
 
 .card-back {

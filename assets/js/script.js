@@ -245,9 +245,10 @@ function flipCard(card) {
     if (!card.classList.contains("flipped") && (isSelectable() === true)) {
         card.classList.add("flipped");
         
-        let cardFront = card.querySelector('.card-front');
-        console.log("cardfront", cardFront);
-        cardFront.classList.add("selected");
+        // let cardFront = card.querySelector('.card-front');
+        // console.log("cardfront", cardFront);
+        // cardFront.classList.add("selected");
+        card.children[1].classList.add('selected');
         
         card.setAttribute('data-guess', 'guess');
 
@@ -284,7 +285,6 @@ function incrementFlipCounter() {
  * Check pairs
  */
 function checkMatchedPairs(checkFirst, checkSecond) {
-
     //grab the card "value" to be checked against other flipped cards
     let cardValueOne = checkFirst.getAttribute('data-cardNumber');
     let cardValueTwo = checkSecond.getAttribute('data-cardNumber');
@@ -297,10 +297,10 @@ function checkMatchedPairs(checkFirst, checkSecond) {
 
     if (cardValueOne === cardValueTwo) {
         console.log("match!");
-        removeSelected();
+        // removeSelected();
         checkFirst.removeAttribute('data-guess');
         checkSecond.removeAttribute('data-guess');
-        checkForGameWin();
+        checkForGameWin(checkFirst, checkSecond);
         checkFirst.classList.add('animate-matched-pair');
         setTimeout(() => {
             checkSecond.classList.add('animate-matched-pair');
@@ -316,20 +316,31 @@ function checkMatchedPairs(checkFirst, checkSecond) {
  * Get all elements previously 'selected' and reset them
  * by removing class.
  */
-function removeSelected() {
+function removeSelected(card1, card2) {
+
     setTimeout(() => {
-    let selected = document.querySelectorAll('.selected');
-    selected.forEach(item => {
-        item.classList.remove("selected");
-    });
+        card1.children[1].classList.remove('selected');
+        card2.children[1].classList.remove('selected');
+        console.log("removing selected border...");
     }, 2000);
+
+
+
+
+    // setTimeout(() => {
+    // let selected = document.querySelectorAll('.selected');
+    // selected.forEach(item => {
+    //     item.classList.remove("selected");
+    // });
+    // console.log("removing selected border...");
+    // }, 2000);
 }
 
 /**
  * Simply unflip incorrect gueses
  */
 function unflipCards(flipTimeout) {
-    removeSelected();
+    // removeSelected();
     let wrongGuesses = $('[data-guess="guess"');
     if (wrongGuesses.length >= 2) {
         setTimeout(() => {
@@ -349,7 +360,8 @@ function unflipCards(flipTimeout) {
  * Check for total number of pairs - 2 by counting "flipped"
  * classes. Auto match the last pair, pause time etc
  */
-function checkForGameWin() {
+function checkForGameWin(param1, param2) {
+    removeSelected(param1, param2);
     let totalPairs = $('.card-container').toArray().length;
     let matchedPairs = $('.flipped').toArray().length;
 
