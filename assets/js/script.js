@@ -96,7 +96,7 @@ function buildGrid(numOfRows, time) {
     $(".game-grid").append(grid);
 
     let cardDeck = $('.card-container').toArray();
-    // shuffleCards(cardDeck);
+    shuffleCards(cardDeck);
     addMyListeners(cardDeck);
 }
 

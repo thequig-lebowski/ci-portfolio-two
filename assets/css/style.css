@@ -31,10 +31,9 @@ a:hover {
 
 /* Generic Styles */
 body {
-  /* max-height: 100vh; */
   font-family: 'Dela Gothic One', serif;
   height: 100vh;
-  /* overflow-x: hidden; */
+  width: 100vw;
   display: flex;
   flex-direction: column;
   background: radial-gradient(#a9d8da, #0ecaf0);
