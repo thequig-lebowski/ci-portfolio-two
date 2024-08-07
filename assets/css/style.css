@@ -168,7 +168,7 @@ h4 {
 
 .card-container.animate-matched-pair {
   /* transform: scale(1); */
-  transition: all ease-in-out 300ms;
+  /* transition: all ease-in-out 300ms; this */
   animation: wiggle 300ms forwards;
   animation-timing-function: linear;
   /* animation-delay: 200ms; */
@@ -369,7 +369,7 @@ h4 {
 
 .modals {
   text-align: center;
-  padding: 10px, 20px;
+  padding: 10px 20px;
   overflow: hidden;
   /* margin-left: 20px;
   margin-right: 20px; */
