@@ -40,32 +40,23 @@ document.addEventListener("DOMContentLoaded", function () {
 function displayModal(myModal) {
     // select all children of dialog and and set to display:none to clear previous popups
     $(`.modal`).children().css("display", "none");
-
+    // target the correct div inside the modal to be diplayed
     $(`${myModal}`).css("display", "block");
     let modal = document.querySelector(`.modal`);
     console.log("modal", modal);
     modal.showModal();
 
-    // let currentModal = document.querySelector(`${myModal}`);
-    // let modalButtons = currentModal.getElementsByTagName("button");
-    // console.log("modal buttons = ", modalButtons);
-    // for (let item of modalButtons) {
-    //     item.addEventListener("click", function () {
-    //         if (this.getElementsByClassName("close-button")) {
-    //             modal.close();
-    //             console.log("close dialog",item.classList);
-    //             resetGame();
-    //         } else if (this.getElementsByClassName("leader-board-button")) {
-    //             console.log("leader board button press", item.classList);
-    //         } 
-    //     })
-    // }
-
-
     let closeModal = document.querySelector(`${myModal} > .close-button`);
     closeModal.addEventListener("click", () => {
-        modal.close();
         resetGame();
+        modal.classList.add('close');
+        console.log("fading modals closed");
+        // borrowed code to close dialog after animation
+        modal.addEventListener('animationend', () => {
+            modal.classList.remove('close');
+            console.log("animation over, closeing modal");
+            modal.close();
+        }, { once: true }); // this prevents buhs when re-opeing modal
     });
 
     // let leaderBoard = document.querySelector(`${myModal} > .leader-board-button`);
@@ -356,6 +347,8 @@ function checkForGameWin(param1, param2) {
     } else {
         // Flip remaining pair of cards
         let unflipped = $('.card-container:not(.flipped)');
+        // remove border from last pair
+        addSelected(unflipped[0], unflipped[1]);
         setTimeout(() => {
             console.log("flip last pair");
             unflipped[0].classList.add('flipped');

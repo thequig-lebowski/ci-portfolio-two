@@ -107,7 +107,9 @@ h4 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
+.game-controls button:hover {
+  transform: scale(1.1);
+}
 
 .game-controls {
   /* justify-content: space-around; */
@@ -209,6 +211,11 @@ h4 {
   transform: rotateY(0deg);
 }
 
+.card-container.flipped:hover {
+  transform: none;
+  transition: none;
+}
+
 .card {
   /* position: absolute; */
   border-radius: 11px;
@@ -289,7 +296,63 @@ h4 {
   max-width: 90%;
   box-shadow: 10px 14px 8px 0 rgba(53, 37, 37, 0.5),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  opacity: 0;
 }
+
+.modal[open] {
+  animation: fade-in-modal 1s linear forwards 500ms;
+}
+
+@keyframes fade-in-modal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-modal {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0);
+}
+
+.modal[open]::backdrop {
+  animation: fade-in-backdrop 1s linear forwards;
+}
+
+@keyframes fade-in-backdrop {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.modal.close {
+  animation: fade-out-modal 700ms linear forwards;
+}
+
+.modal.close::backdrop {
+  animation: fade-out-backdrop 700ms linear forwards;
+}
+
+/* .modal.close::backdrop {
+  animation: fade-backdrop 1s linear reverse;
+} */
 
 /* .modal[open]::backdrop {
   animation: backdrop-fade 2s  ease forwards;
@@ -533,70 +596,58 @@ h3 {
 
 
 /*   ---Media Queries--- */
-/* xs */
-@media (min-width: 475px) {
-  .query-container {
-    max-width: 475px;
-  }
-}
-
 /* sm */
 @media (min-width: 640px) {
   .query-container {
     max-width: 640px;
   }
 
-  /* .card-container:hover, */
-  .game-controls button:hover {
-    transform: scale(1.1);
-  }
-
-  .card-container.flipped:hover {
-    transform: none;
-    transition: none;
-  }
-
 }
 
-
-/* md */
-@media (min-width: 768px) {
-  .query-container {
-    max-width: 768px;
-  }
-
-  .front-image,
-  .back-image {
-    /* max-height: 200px; */
-    /* aspect-ratio: 1/1; */
-  }
-}
-
-/* lg */
-@media (min-width: 1024px) {
-  .query-container {
-    max-width: 1024px;
+/* ---- Media Queries----  */
+/* 2xl */
+@media (max-width: 1536px) {
+  .container {
+    max-width: 1280px;
   }
 }
 
 /* xl */
-@media (min-width: 1280px) {
-  .query-container {
-    max-width: 1280px;
-  }
-
-  /* this will go in the small screen section once i change the order of the media q's */
-  .card-container.scale {
-    /* scale: (1); */
-    transform: none;
-    /* transition: none; */
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
   }
 }
 
-/* 2xl */
-@media (min-width: 1536px) {
-  .query-container {
-    max-width: 1536px;
+/* lg */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+/* md */
+@media (max-width: 768px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+/* sm */
+@media (max-width: 640px) {
+  .container {
+    max-width: 475px;
+  }
+}
+
+/* xs */
+@media (max-width: 475px) {
+  .container {
+    width: 100%;
+  }
+
+  .card-container.scale {
+    transform: none;
   }
 }
 
