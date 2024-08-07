@@ -597,52 +597,52 @@ h3 {
 
 /*   ---Media Queries--- */
 /* sm */
-@media (min-width: 640px) {
+/* @media (min-width: 640px) {
   .query-container {
     max-width: 640px;
   }
 
-}
+} */
 
 /* ---- Media Queries----  */
 /* 2xl */
 @media (max-width: 1536px) {
-  .container {
+  .query-container {
     max-width: 1280px;
   }
 }
 
 /* xl */
 @media (max-width: 1280px) {
-  .container {
+  .query-container {
     max-width: 1024px;
   }
 }
 
 /* lg */
 @media (max-width: 1024px) {
-  .container {
+  .query-container {
     max-width: 768px;
   }
 }
 
 /* md */
 @media (max-width: 768px) {
-  .container {
+  .query-container {
     max-width: 640px;
   }
 }
 
 /* sm */
 @media (max-width: 640px) {
-  .container {
+  .query-container {
     max-width: 475px;
   }
 }
 
 /* xs */
 @media (max-width: 475px) {
-  .container {
+  .query-container {
     width: 100%;
   }
 

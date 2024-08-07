@@ -21,9 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (this.getAttribute("data-type") === "reset") {
                 resetGame();
             }
-            else {
-            alert(`data-type ${this.getAttribute("data-type")} not recognised.`);
-            }
         });
     }
     buildGrid(4, 60);
