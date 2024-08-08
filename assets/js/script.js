@@ -163,7 +163,7 @@ function addMyListeners(cardDeck) {
                 countdownTimer(true);
             }
         });
-        // JS version of css :hover so that it can be paused
+        // JS version of css :hover so that it can be paused until cards unflip
         card.addEventListener("mouseover", () => {
             if (isSelectable()) {
                 card.classList.add("scale");
@@ -213,7 +213,7 @@ function flipCard(card) {
 }
 
 /**
- * Update the number of gueses the user has made
+ * Update the number of guesses the user has made
  * write it to the DOM
  */
 function incrementFlipCounter() {
@@ -236,10 +236,8 @@ function checkMatchedPairs(checkFirst, checkSecond) {
     if (cardValueOne === cardValueTwo) {
         checkFirst.removeAttribute('data-guess');
         checkSecond.removeAttribute('data-guess');
-        // experimental bit here...
-        checkFirst.setAttribute('data-guess', 'match');
-        checkSecond.setAttribute('data-guess', 'match');
         checkForGameWin(checkFirst, checkSecond);
+        //Congratulations animation
         setTimeout(() => {
             checkFirst.classList.add('animate-matched-pair');
             setTimeout(() => {
@@ -311,6 +309,7 @@ function checkForGameWin(param1, param2) {
                 unflipped[1].classList.add('animate-matched-pair');
             }, 150);
         }, 650);
+        // Wait a moment before displaying the winner modal
         setTimeout(() => {
             displayModal(".winner");
         }, 1500);

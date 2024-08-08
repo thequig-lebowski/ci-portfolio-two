@@ -564,7 +564,7 @@ borrowed from treknuts, linked fully in README.md */
   padding-bottom: 30px;
 }
 
-#error-404>h3 {
+#content-404 {
   padding-bottom: 20px;
 }
 
@@ -590,8 +590,7 @@ borrowed from treknuts, linked fully in README.md */
     1px 1px 0 #000;
 }
 
-#error-404>h3:hover {
-  scale: (1);
+#content-404:hover {
   transform: none;
   cursor: default;
 }
@@ -640,7 +639,6 @@ by 'Slaying the Dragon'. Credited fully in README.md */
   
   .game-controls button {
     font-size: .7rem;
-
   }
 
   .game-info {
@@ -660,8 +658,8 @@ by 'Slaying the Dragon'. Credited fully in README.md */
   }
   
   .game-controls button {
-    font-size: .6rem;
-    padding: 1px 4px;
+    font-size: .8rem;
+    padding: 2px 4px;
     margin: 0px 9px;
   }
 
