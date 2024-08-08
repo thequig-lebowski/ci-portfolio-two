@@ -99,6 +99,7 @@ Critical to a card-based memory game is the ability to shuffle the cards each ti
 To add to the experience of game play a flip animation was applied to each card whenever it was turned. This reinforced the idea that it was a card that the user was playing with as well as providing a visual que that an input was received or letting them know a card wasn't in play currently. Also having them "unflip" adds another nice aspect to the game play.
 * Responsiveness  
 Designed for mobile first, a lot of effort went into making sure that the game looked and worked well at all screen sizes and all game levels. To ensure the larger grid looks well, it gets it's own `small-card` class to resize it specifically. Similarly the `colum-gap` and `row-gap` and altered for the larder grid at smaller screen sizes.
+* When viewed in Chrome on Android the site theme extends to the browser.
 
 ### Future Features
 * I would like to see the addition of a score board, stored locally. This would provide another call to action to try to improve
@@ -123,8 +124,94 @@ Designed for mobile first, a lot of effort went into making sure that the game l
 ### Testing User Stories
 * As a user I want to play a fun game to pass the time.  
   	-The game is engaging, simple and provides adequate challenge
-* As a user I want to develop my memory skills and reaction times.
-* As a user I want my young child to develop their hand-eye coordination.
-* As a user I will look for feedback as to weather or not I am using the site/playing the game correctly.
-* As the user I want to be able to play the game on my mobile device as well as desktop/laptop
+* As a user I want to develop my memory skills and reaction times.  
+  	-Providing two levels of difficulty a user has the scope to challenge themselves to improve using their time and score as a bar to beat.
 
+* As a user I want my young child to develop their hand-eye coordination.  
+
+  -Playing the game on a device such as an iPad or smartphone, a young child could indeed develop such dexterity.
+
+* As a user I will look for feedback as to weather or not I am using the site/playing the game correctly.  
+
+	-Visual cues such as flipping the card to let the user know buttons have been clicked. Screen overlays when I run out of time/loose. Notifications when I win or the game is over.
+
+* As the user I want to be able to play the game on my mobile device as well as desktop/laptop  
+	-The site is responsive and adapts well across multiply platforms.
+
+## Device Testing
+* An early bug I detected was that the `clearInterval()` would not work regardless of where it was called unless the variable it was assigned to was scoped globally. Before this fix there would be multiple instances of the timer running concurrently amd even below zero into negative numbers.
+* Another bug I encountered while testing on mobile device was that if cards were clicked too quickly in succession it would result in false matched pairs. To fix this I changed the names of the function parameters so they were unique to each function I also added a `isSelectable()` function which pauses the ability to flip another card if there are two cards currently flipped on the grid. This solved the problem. Later I added the functionality to override this timeout with an additional click to save the user from waiting for the cards to "auto-unflip". <details>
+  <summary>screen shots of false matches</summary>
+  <img src="assets/images/readme/bug1.jpg" alt="screenshot of bug">
+  <img src="assets/images/readme/bug2.jpg" alt="screenshot of bug">
+</details>  
+
+* There were also a few media query bugs that were squashed with little difficulty
+
+* I used the console a lot for debugging one instance I found it helpful was when I had misplaced a call for a function which resulted in the function getting called unnecessarily three times. <details><summary>Screen shot of console</summary><img src="assets/images/readme/reorderfuncion.PNG" alt="screenshot of bug"></details>
+## Validation
+
+* I also ran all the code through CSS and HTML validators and JavaScript linters.
+
+* I also checked the site on WAVE and Lighthouse  
+
+![lighthouse results](assets/images/readme/LighthouseResults.PNG)
+
+# Deployment
+## GitHub Pages
+
+The project was deployed to GitHub Pages using the following steps...
+
+1. Log in to GitHub and locate the GitHub Repository
+2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
+3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
+4. Under "Source", click the dropdown called "None" and select "Master Branch".
+5. The page will automatically refresh.
+6. Scroll back down through the page to locate the now published site link in the "GitHub Pages" section.
+
+## Forking the GitHub Repository
+
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+1. Log in to GitHub and locate the GitHub Repository
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. You should now have a copy of the original repository in your GitHub account.
+
+## Making a Local Clone
+
+1. Log in to GitHub and locate the GitHub Repository.
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
+
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+```
+
+7. Press Enter. Your local clone will be created.
+
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `CI-Clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
+# Credits
+## Code
+The majority of this project is the culmination of the study I've done with Code Institute, but for the rest I've listed below.
+* Help with generating even, dynamic grids was taken from [these](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns) examples on MDN Web Docs.
+* Additional info on making the font size dynamic was taken from [w3schools](https://www.w3schools.com/howto/howto_css_responsive_text.asp) and [this](https://stackoverflow.com/questions/40528290/how-to-implement-max-font-size) stack overflow thread.
+* [CSS Tricks](https://css-tricks.com/adding-stroke-to-web-text/) had what I needed to get a simulated stroke outline on the main title (it's actually a shadow).
+* Crutialy, in order to re-flip the cards I needed to know the `.contains()` method. [Here](https://www.javascripttutorial.net/dom/css/check-if-an-element-contains-a-class/) is where I found that.
+* [Stack Overflow](https://stackoverflow.com/questions/5978519/how-to-use-setinterval-and-clearinterval) to the resue again, this time for clarity on the `setInterval()` function to run the timmer.
+* To animate the overlays in I used [this](https://www.codegrepper.com/code-examples/css/animation+fade+in+css) piece of CSS.
+* Finally, the shuffle algorithm which took a minute to get my head around was in part, due to [this](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array/2450976#2450976) Stack Overflow thread.
+* Modal animations. this [CodePen](https://codepen.io/designcouch/pen/obvKxm)
+* How to close a modal after animation from [this](https://stackoverflow.com/questions/71744072/how-to-animate-css-backdrop-behind-html-dialog) stackoverflow thread
+* Background Bubbles [codepend](https://codepen.io/Momika/pen/ydaWmQ) and [this](https://codepen.io/treknuts/pen/rNyPzmO) for the style of bubble
+## Images
+All the images of socks where created by me except for the [washing machine](https://www.istockphoto.com/vector/thin-line-washing-machine-with-blue-bubble-gm1140553709-305255556) which I got from istockphotos.
