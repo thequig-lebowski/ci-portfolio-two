@@ -1,18 +1,15 @@
+/* Import fonts from google */
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700");
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
 
+/* local fonts */
 @font-face {
   font-family: "SafirScript";
   src: url("../fonts/SafirScript.ttf") format("truetype");
 }
 
-/* Declare variables to be targated by js */
-:root {
-  --num-of-rows: 4;
-}
-
-/* Global CSS Resets */
+/*    ---Global CSS Resets---    */
 *,
 *::before,
 *::after {
@@ -28,8 +25,12 @@ a:hover {
   color: inherit;
 }
 
+/* Declare variables to be targated by js */
+:root {
+  --num-of-rows: 4;
+}
 
-/* Generic Styles */
+/*    ---Generic Styles---    */
 body {
   font-family: 'Dela Gothic One', serif;
   height: 100vh;
@@ -48,14 +49,11 @@ body {
   padding-right: 0.5rem;
   display: flex;
   justify-content: center;
-
-  /* border: 1px green solid; */
 }
 
 #logo {
   font-family: SafirScript;
   font-size: clamp(42px, 9vw, 75px);
-  /* text-align: center; */
   padding-top: 20px;
   color: red;
   text-shadow:
@@ -74,7 +72,6 @@ h1 {
 
 h2 {
   margin-bottom: 18px;
-  /* letter-spacing: 1px; */
   color: red;
   text-shadow:
     3px 3px 0 #000,
@@ -88,15 +85,19 @@ h4 {
   margin-bottom: 10px;
 }
 
-/*   ----Buttons---   */
+/*    ---Buttons---    */
 .game-controls button {
   border-radius: 4px;
   font-family: 'Dela Gothic One', serif;
   padding: 5px 7px;
   font-size: .9rem;
   cursor: pointer;
+  margin: 5px 15px;
+  transition: transform 200ms ease-in-out;
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .game-controls button:hover {
@@ -104,22 +105,15 @@ h4 {
 }
 
 .game-controls {
-  /* justify-content: space-around; */
   margin-left: auto;
   margin-right: auto;
-
-}
-
-.game-controls button {
-  margin: 5px 15px;
-  transition: transform 200ms ease-in-out;
-
 }
 
 .game-info {
   display: flex;
   justify-content: space-between;
   grid-column: 1 / -1;
+  font-size: inherit;
 }
 
 .game-grid {
@@ -132,7 +126,7 @@ h4 {
   overflow: hidden;
 }
 
-/* Card styles */
+/*    ---Card styles---    */
 .card-container {
   position: relative;
   justify-self: center;
@@ -144,16 +138,12 @@ h4 {
 }
 
 .card-container.animate-matched-pair {
-  /* transform: scale(1); */
-  /* transition: all ease-in-out 300ms; this */
   animation: wiggle 300ms forwards;
   animation-timing-function: linear;
-  /* animation-delay: 200ms; */
   animation-iteration-count: 4;
 }
 
 @keyframes wiggle {
-
   0% {
     transform: rotate(0deg);
   }
@@ -194,7 +184,6 @@ h4 {
 }
 
 .card {
-  /* position: absolute; */
   border-radius: 11px;
   width: 100%;
   height: 100%;
@@ -204,38 +193,25 @@ h4 {
   overflow: hidden;
   backface-visibility: hidden;
   transition: transform 350ms ease-in-out;
-  box-shadow: 0 4px 8px 0 rgba(53, 37, 37, 0.5),
+  box-shadow:
+    0 4px 8px 0 rgba(53, 37, 37, 0.5),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-front {
-  /* position: absolute; */
   transform: rotateY(180deg);
   background-color: white;
   border: 2px solid #00d2fc;
-  box-shadow: 0 4px 8px 0 rgba(53, 37, 37, 0.5),
+  box-shadow:
+    0 4px 8px 0 rgba(53, 37, 37, 0.5),
     0 6px 20px 0 rgba(0, 0, 0, 0.19),
     inset 0 0 30px 5px #9ac0eb;
 }
 
-
 .card-front.selected {
   transition: border-color 1s linear;
-
   border-color: white;
-  /* border: solid white 2px;
-  animation: border-fade 2s ease forwards; */
 }
-
-/* @keyframes border-fade {
-  0% {
-    border-color: rgba(14, 202, 240, 0);
-
-  }
-  100% {
-    border-color: rgba(255, 255, 255, 1);
-  }
-} */
 
 .card-back {
   position: absolute;
@@ -268,13 +244,12 @@ h4 {
   bottom: 20%;
   margin: auto;
   position: absolute;
-  /* min-height: 270px; */
-  /* min-width: 370px; */
   max-width: 50ch;
   border-radius: 11px;
   padding: 5px 10px;
   max-width: 90%;
-  box-shadow: 10px 14px 8px 0 rgba(53, 37, 37, 0.5),
+  box-shadow:
+    10px 14px 8px 0 rgba(53, 37, 37, 0.5),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   opacity: 0;
   overflow: hidden;
@@ -284,42 +259,12 @@ h4 {
   animation: fade-in-modal 1s linear forwards 500ms;
 }
 
-@keyframes fade-in-modal {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out-modal {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
 .modal::backdrop {
   background: rgba(0, 0, 0, 0);
 }
 
 .modal[open]::backdrop {
   animation: fade-in-backdrop 1s linear forwards;
-}
-
-@keyframes fade-in-backdrop {
-  from {
-    background: rgba(0, 0, 0, 0);
-  }
-
-  to {
-    background: rgba(0, 0, 0, 0.5);
-  }
 }
 
 .modal.close {
@@ -333,7 +278,6 @@ h4 {
 .modals {
   text-align: center;
   padding: 10px 20px;
-  /* overflow: hidden; */
 }
 
 .modal-content {
@@ -343,6 +287,7 @@ h4 {
 }
 
 .close-button {
+  /* This stops the entire line from being clickable and only the text */
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
@@ -370,15 +315,6 @@ h4 {
     1px 1px 0 #000;
 }
 
-#how-to-play {
-  /* text-decoration: underline; */
-  color: red;
-}
-
-#how-to-play:hover {
-  cursor: pointer;
-}
-
 .welcome-modal,
 .game-over,
 .winner {
@@ -389,10 +325,42 @@ h4 {
 #time-left,
 #num-of-moves {
   font-size: 1.3em;
-  /* color: red; */
+}
+
+/*    ---Modal aninmations---    */
+@keyframes fade-in-modal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-modal {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-backdrop {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.5);
+  }
 }
 
 /*  ---Background Bubbles---  */
+/* The animations were borrowed from Momika and the bubble imaging was 
+borrowed from treknuts, linked fully in README.md */
 .bubbles {
   position: absolute;
   width: 100%;
@@ -409,7 +377,6 @@ h4 {
   width: 40px;
   height: 40px;
   background: radial-gradient(circle at top, white, rgba(255, 255, 255, 0) 58%);
-
   border-radius: 50%;
   opacity: 0.5;
   animation: rise 10s infinite ease-in;
@@ -446,25 +413,6 @@ h4 {
   -webkit-transform: rotateZ(-30deg);
   transform: rotateZ(-30deg);
 }
-
-/* .bubble .shadow {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.1) 40%,
-      rgba(0, 0, 0, 0) 50%);
-  z-index: 1;
-} */
-
-/* .bubble.plain {
-  background: black;
-} */
-
-/* .bubble.plain:before,
-.bubble.plain:after {
-  display: none;
-} */
 
 .bubble.ball {
   background: radial-gradient(circle at 50% 55%,
@@ -593,74 +541,6 @@ h4 {
   }
 }
 
-
-/*   ---Media Queries--- */
-/* sm */
-/* @media (min-width: 640px) {
-  .query-container {
-    max-width: 640px;
-  }
-
-} */
-
-/* ---- Media Queries----  */
-/* 2xl */
-@media (max-width: 1536px) {
-  .query-container {
-    max-width: 1280px;
-  }
-
-  .front-image.small-card,
-  .back-image.small-card {
-    max-height: 90px;
-  }
-}
-
-/* xl */
-@media (max-width: 1280px) {
-  .query-container {
-    max-width: 1024px;
-  }
-}
-
-/* lg */
-@media (max-width: 1024px) {
-  .query-container {
-    max-width: 768px;
-  }
-}
-
-/* md */
-@media (max-width: 768px) {
-  .query-container {
-    max-width: 640px;
-  }
-}
-
-/* sm */
-@media (max-width: 640px) {
-  .query-container {
-    max-width: 475px;
-  }
-  
-  .game-grid.small-gap {
-    column-gap: 5px;
-    row-gap: 5px;
-  }
-}
-
-/* xs */
-@media (max-width: 475px) {
-  .query-container {
-    width: 100%;
-  }
-
-  /* prevent anoying hover effect while on device */
-  .card-container.scale {
-    transform: none;
-  }
-}
-
 /*   ---Error 404---   */
 #error-404 {
   position: fixed;
@@ -700,7 +580,7 @@ h4 {
 }
 
 #link:hover {
-  /* transition: all ease-in-out 300ms; */
+  transition: all ease-in-out 300ms;
   transform: scale(1.1);
   text-shadow:
     3px 3px 6px #000,
@@ -711,7 +591,86 @@ h4 {
 }
 
 #error-404>h3:hover {
-  /* scale: (1); */
+  scale: (1);
   transform: none;
   cursor: default;
+}
+
+/*    ---Media Queries---    */
+/* This framework for responsivness was borrowed from a video tutorial
+by 'Slaying the Dragon'. Credited fully in README.md */
+/* 2xl */
+@media (max-width: 1536px) {
+  .query-container {
+    max-width: 1280px;
+  }
+
+  .front-image.small-card,
+  .back-image.small-card {
+    max-height: 90px;
+  }
+}
+
+/* xl */
+@media (max-width: 1280px) {
+  .query-container {
+    max-width: 1024px;
+  }
+}
+
+/* lg */
+@media (max-width: 1024px) {
+  .query-container {
+    max-width: 768px;
+  }
+}
+
+/* md */
+@media (max-width: 768px) {
+  .query-container {
+    max-width: 640px;
+  }
+}
+
+/* sm */
+@media (max-width: 640px) {
+  .query-container {
+    max-width: 475px;
+  }
+  
+  .game-controls button {
+    font-size: .7rem;
+
+  }
+
+  .game-info {
+    font-size: .9rem;
+  }
+
+  .game-grid.small-gap {
+    column-gap: 5px;
+    row-gap: 5px;
+  }
+}
+
+/* xs */
+@media (max-width: 475px) {
+  .query-container {
+    width: 100%;
+  }
+  
+  .game-controls button {
+    font-size: .6rem;
+    padding: 1px 4px;
+    margin: 0px 9px;
+  }
+
+  .game-info {
+    font-size: .8rem;
+  }
+
+  /* prevent anoying hover effect while on device */
+  .card-container.scale {
+    transform: none;
+  }
 }

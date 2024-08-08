@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let button of buttons) {
         button.addEventListener("click", function () {
             if (this.getAttribute("data-type") === "easy") {
-                // Remove, as 'small-gap' is only needed for the difficult game
+                // Remove this class, as 'small-gap' is only needed for the difficult game
                 $('.game-grid').removeClass('small-gap');
                 buildGrid(4, 60);
             } else if (this.getAttribute("data-type") === "difficult") {
@@ -37,6 +37,7 @@ function displayModal(myModal) {
     $(`.modal`).children().css("display", "none");
     // target the correct div inside the modal to be diplayed
     $(`${myModal}`).css("display", "block");
+
     let modal = document.querySelector(`.modal`);
     modal.showModal();
 
@@ -44,11 +45,11 @@ function displayModal(myModal) {
     closeModal.addEventListener("click", () => {
         resetGame();
         modal.classList.add('close');
-        // borrowed code to close dialog after animation
+        // borrowed code Adriano (fully credited in README)to close dialog after animation
         modal.addEventListener('animationend', () => {
             modal.classList.remove('close');
             modal.close();
-        }, { once: true }); // this prevents buhs when re-opeing modal
+        }, { once: true }); // this prevents bugs when re-opeing modal
     });
 }
 
