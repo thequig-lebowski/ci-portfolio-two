@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 buildGrid(4, 60);
             } else if (this.getAttribute("data-type") === "difficult") {
                 buildGrid(6, 200);
+                addQueryClass();
             } else if (this.getAttribute("data-type") === "reset") {
                 resetGame();
             }
@@ -333,4 +334,16 @@ function getScoreBord() {
     $('#time-left').text(elapsedTime);
     $('#total-of-pairs').text(totalMatches);
     $('#num-of-moves').text(totalMoves);
+}
+
+/**
+ * Add classes only when difficult game is selected so that it responds differently
+ * to the easy game.
+ */
+function addQueryClass() {
+    //Add class to image to be targeted by media queries
+    $('.front-image').addClass('small-card');
+    $('.back-image').addClass('small-card');
+    //Add class to game-grid for grid gaps to be targeted by mq's
+    $('.game-grid').addClass('small-gap');
 }
