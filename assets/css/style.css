@@ -260,13 +260,11 @@ h4 {
 
 .front-image,
 .back-image {
-  /* display: block; */
   max-height: 110px;
   width: 80%;
-
-  /* height: auto; */
 }
 
+/* class to hide semanticaly used html */
 .hidden {
   display: none;
 }
@@ -620,6 +618,11 @@ h4 {
   .query-container {
     max-width: 1280px;
   }
+
+  .front-image,
+  .back-image {
+    max-height: 90px;
+  }
 }
 
 /* xl */
@@ -648,6 +651,11 @@ h4 {
   .query-container {
     max-width: 475px;
   }
+  
+  .game-grid {
+    column-gap: 5px;
+    row-gap: 5px;
+  }
 }
 
 /* xs */
@@ -656,6 +664,7 @@ h4 {
     width: 100%;
   }
 
+  /* prevent anoying hover effect while on device */
   .card-container.scale {
     transform: none;
   }
