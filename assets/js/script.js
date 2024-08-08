@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let button of buttons) {
         button.addEventListener("click", function () {
             if (this.getAttribute("data-type") === "easy") {
+                // Remove, as 'small-gap' is only needed for the difficult game
+                $('.game-grid').removeClass('small-gap');
                 buildGrid(4, 60);
             } else if (this.getAttribute("data-type") === "difficult") {
                 buildGrid(6, 200);
