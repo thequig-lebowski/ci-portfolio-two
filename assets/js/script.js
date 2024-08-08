@@ -47,11 +47,6 @@ function displayModal(myModal) {
             modal.close();
         }, { once: true }); // this prevents buhs when re-opeing modal
     });
-
-    // let leaderBoard = document.querySelector(`${myModal} > .leader-board-button`);
-    // leaderBoard.addEventListener("click", () => {
-    //     console.log("leader board button press!");
-    // });
 }
 
 /**
@@ -96,7 +91,7 @@ function buildGrid(numOfRows, time) {
     $(".game-grid").append(grid);
 
     let cardDeck = $('.card-container').toArray();
-    shuffleCards(cardDeck);
+    // shuffleCards(cardDeck);
     addMyListeners(cardDeck);
 }
 
@@ -304,7 +299,7 @@ function checkForGameWin(param1, param2) {
                 unflipped[1].classList.add('flipped');
             }, 150);
         }, 300);
-
+        getScoreBord();
         //Set a delay for the matched-pair-animation on the final pair
         setTimeout(() => {
             unflipped[0].classList.add('animate-matched-pair');
@@ -314,7 +309,28 @@ function checkForGameWin(param1, param2) {
         }, 650);
         setTimeout(() => {
             displayModal(".winner");
-        }, 2000);
+        }, 1500);
         countdownTimer(false);
     }
+}
+
+/**
+ * Get's all relevent score data and writes it to winner modal 
+ */
+function getScoreBord() {
+    let gridLevel = $(":root").css("--num-of-rows");
+    let totalMoves = $('#total-moves').text();
+    let timeRemain = $('#time-remain').text();
+    let totalTime = 200;
+    let totalMatches = 18;
+    //We can infer the total time and number of matches based off gridLevel.
+    if(gridLevel == 4) {
+        totalTime = 60;
+        totalMatches = 8;
+    } 
+
+    let elapsedTime = totalTime - timeRemain;
+    $('#time-left').text(elapsedTime);
+    $('#total-of-pairs').text(totalMatches);
+    $('#num-of-moves').text(totalMoves);
 }

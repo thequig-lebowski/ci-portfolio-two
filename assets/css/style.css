@@ -73,6 +73,8 @@ h1 {
 }
 
 h2 {
+  margin-bottom: 18px;
+  /* letter-spacing: 1px; */
   color: red;
   text-shadow:
     3px 3px 0 #000,
@@ -83,11 +85,7 @@ h2 {
 }
 
 h4 {
-  font-family: inherit;
-  font-size: clamp(18px, 3.5vw, 32px);
-  margin-bottom: .2rem;
-  font-weight: 400;
-  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 /*   ----Buttons---   */
@@ -281,8 +279,8 @@ h4 {
   bottom: 20%;
   margin: auto;
   position: absolute;
-  min-height: 270px;
-  min-width: 370px;
+  /* min-height: 270px; */
+  /* min-width: 370px; */
   max-width: 50ch;
   border-radius: 11px;
   padding: 5px 10px;
@@ -343,37 +341,25 @@ h4 {
   animation: fade-out-backdrop 700ms linear forwards;
 }
 
-/* .modal.close::backdrop {
-  animation: fade-backdrop 1s linear reverse;
-} */
-
-/* .modal[open]::backdrop {
-  animation: backdrop-fade 2s  ease forwards;
-}
-
-@keyframes backdrop-fade {
-  from {
-    background: transparent;
-  }
-  to{
-    background: rgba(0, 0, 0, 0.6);
-  }
-} */
-
 .modals {
   text-align: center;
   padding: 10px 20px;
   /* overflow: hidden; */
 }
 
-.close-button {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 25px;
-  /* margin-top: auto;
+.modal-content {
+  min-width: 70%;
   margin-left: auto;
-  margin-right: auto; */
+  margin-right: auto;
+}
+
+.close-button {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
   color: #00d2fc;
   text-shadow:
     3px 3px 0 #000,
@@ -395,12 +381,26 @@ h4 {
     1px 1px 0 #000;
 }
 
+#how-to-play {
+  /* text-decoration: underline; */
+  color: red;
+}
+
+#how-to-play:hover {
+  cursor: pointer;
+}
+
 .welcome-modal,
 .game-over,
-.winner,
-.leader-board,
-.how-to-play {
+.winner {
   display: none;
+}
+
+#total-of-pairs,
+#time-left,
+#num-of-moves {
+  font-size: 1.3em;
+  /* color: red; */
 }
 
 /*  ---Background Bubbles---  */
@@ -708,9 +708,6 @@ h4 {
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
-}
-
-/* color: pink; */
 }
 
 #error-404>h3:hover {

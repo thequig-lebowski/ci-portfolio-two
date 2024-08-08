@@ -30,37 +30,39 @@
         <!-- Modals -->
         <dialog class="modal">
             <div class="modals welcome-modal">
-                <h2>Welcome!</h2>
-                <!-- <p>It's laundry day and all your socks are mixed up!</p> -->
-                <!-- <h3>How to play</h3> -->
-                <p>It's laundry day and time to pair your socks.</p>
-                <p>Flip pairs of cards at a time to find all the machting socks</p>
-                <p>Find all the pairs before the clock runs out and with the fewest moves</p>
-                flip the first card to start the timer
-                <h3 class="button close-button">Click to Start</h3>
+                <div class="modal-content">
+                    <h2>Welcome!</h2>
+                    <p>Welcome to Laundro-Match, a classic card-based memory game themed around the usually mundane task
+                        of pairing socks.</p>
+                    <br>
+                    <h4>How to Play</h4>
+                    <p>Flip pairs of cards at a time to reveal the unmatched socks</p>
+                    <p>Try to find all the pairs before the clock runs out and with the fewest moves.</p>
+                    <p>The timer starts as soon as you flip the first card. Good luck!</p>
+                </div>
+                <h3 class="button close-button">Start Game</h3>
                 <!-- <h3 class="button leader-board-button">Leader Board</h3> -->
             </div>
             <div class="modals game-over">
-                <h2>Game Over!</h2>
-                <p>Click to play again</p>
+                <div class="modal-content">
+                    <h2>Game Over!</h2>
+                    <p>It looks like you'll be walking around in oddsocks for the next while.</p>
+                    <p>That's OK, you're probably good at other things.</p>
+                    <br>
+                    <p>Click below to try again.</p>
+                </div>
                 <h3 class="button close-button">Try Again</h3>
                 <!-- <h3 class="button leader-board-button">Leader Board</h3> -->
             </div>
             <div class="modals winner">
-                <h2>Winner!</h2>
-                <p>Click to play again</p>
-                <h3 class="button close-button">Play Again</h3>
-                <!-- <button class="button leader-board-button">Leader Board</button> -->
-            </div>
-            <div class="modals leader-board">
-                <h2>Top Scores</h2>
-                <p>Click to play again</p>
-                <button class="button close-button">Play Again</button>
-            </div>
-            <div class="modals how-to-play">
-                <h2>How To Play</h2>
-                <p>Click to play again</p>
-                <h3 class="button close-button">Start Game</h3>
+                <div class="modal-content">
+                    <h2>Winner!</h2>
+                    <p>Congratulations, you found all the pairs!</p>
+                    <br>
+                    <p>You matched <span id="total-of-pairs">0</span> pairs of socks in <span id="time-left">0</span>
+                        seconds and in only <span id="num-of-moves">0</span> guesses!</p>
+                </div>
+                <h3 class="button close-button">Play Again?</h3>
             </div>
         </dialog>
         <!-- Game Controls -->
